@@ -1,0 +1,452 @@
+UTC: 2026-11-16T10:15:12.091453+00:00
+Mission: 17
++ run.sh:2: set -euo pipefail
+++ run.sh:3: dirname /home/vinaypatil.guest/securelab/missions/run.sh
++ run.sh:3: source /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
+++ common.sh:2: set -euo pipefail
+++ common.sh:3: export LC_ALL=C
+++ common.sh:3: LC_ALL=C
+++++ common.sh:4: dirname /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
++++ common.sh:4: cd /home/vinaypatil.guest/securelab/missions/../scripts/..
++++ common.sh:4: pwd
+++ common.sh:4: ROOT=/home/vinaypatil.guest/securelab
+++ common.sh:5: : /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-17
+++ common.sh:6: mkdir -p /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-17
+++ common.sh:7: cd /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-17
+++ common.sh:8: BIN=/opt/securelab/bin
+++ common.sh:9: LAB=/opt/securelab
+++ common.sh:21: need_vm
++++ common.sh:11: uname -s
+++ common.sh:11: [[ Linux == Linux ]]
+++ common.sh:11: [[ -f /etc/securelab-vm ]]
+++ common.sh:12: sudo -n true
+++ common.sh:22: ulimit -c 0
++ run.sh:4: mission=17
++ run.sh:5: case "$mission" in
++ run.sh:158: sudo aa-status
+apparmor module is loaded.
+180 profiles are loaded.
+104 profiles are in enforce mode.
+   /usr/bin/man
+   /usr/lib/snapd/snap-confine
+   /usr/sbin/chronyd
+   :glycin:bwrap
+   :glycin:loaders
+   alsamixer
+   babeld
+   bfdd
+   bgpd
+   bwrap
+   dig
+   dnstracer
+   docker-default
+   eigrpd
+   fabricd
+   fusermount3
+   gs
+   hostname
+   iotop-c
+   ipa_verify
+   irssi
+   isisd
+   john
+   ldpd
+   linux-boot-prober
+   locale
+   locale//compressor
+   lsb_release
+   lsblk
+   lsusb
+   man_filter
+   man_groff
+   mbsync
+   mosquitto
+   nc.openbsd
+   nhrpd
+   notify-send
+   nslookup
+   nvidia_modprobe
+   nvidia_modprobe//kmod
+   os-prober
+   ospf6d
+   ospfd
+   pathd
+   pbrd
+   pim6d
+   pimd
+   plasmashell
+   plasmashell//QtWebEngineProcess
+   proftpd
+   qpdf
+   ripd
+   ripngd
+   rsyslogd
+   sbuild
+   sbuild-abort
+   sbuild-adduser
+   sbuild-apt
+   sbuild-checkpackages
+   sbuild-clean
+   sbuild-createchroot
+   sbuild-destroychroot
+   sbuild-distupgrade
+   sbuild-hold
+   sbuild-shell
+   sbuild-unhold
+   sbuild-update
+   sbuild-upgrade
+   ssh-keyscan
+   staticd
+   systemd-detect-virt
+   tcpdump
+   tinyproxy
+   tnftp
+   tnftp//cmds
+   tnftp//dash
+   tnftp//dash//more
+   transmission-cli
+   transmission-daemon
+   transmission-gtk
+   transmission-qt
+   tshark
+   tshark//dumpcap
+   ubuntu_pro_apt_news
+   ubuntu_pro_esm_cache
+   ubuntu_pro_esm_cache//apt_methods
+   ubuntu_pro_esm_cache//apt_methods_gpgv
+   ubuntu_pro_esm_cache//cloud_id
+   ubuntu_pro_esm_cache//dpkg
+   ubuntu_pro_esm_cache//ps
+   ubuntu_pro_esm_cache//ubuntu_distro_info
+   ubuntu_pro_esm_cache_systemctl
+   ubuntu_pro_esm_cache_systemd_detect_virt
+   unix-chkpwd
+   unpriv_bwrap
+   unprivileged_userns
+   vrrpd
+   wg
+   wg-quick
+   wg-quick//ip
+   wg-quick//nft
+   wg-quick//sysctl
+   who
+   znc
+2 profiles are in complain mode.
+   Xorg
+   Xorg_wrap
+0 profiles are in prompt mode.
+0 profiles are in kill mode.
+74 profiles are in unconfined mode.
+   1password
+   Discord
+   MongoDB Compass
+   QtWebEngineProcess
+   balena-etcher
+   brave
+   buildah
+   cam
+   ch-checkns
+   ch-run
+   chrome
+   chromium
+   crun
+   devhelp
+   element-desktop
+   epiphany
+   evolution
+   firefox
+   flatpak
+   foliate
+   geary
+   github-desktop
+   goldendict
+   kchmviewer
+   keybase
+   lc-compliance
+   libcamerify
+   linux-sandbox
+   loupe
+   lxc-attach
+   lxc-create
+   lxc-destroy
+   lxc-execute
+   lxc-stop
+   lxc-unshare
+   lxc-usernsexec
+   mmdebstrap
+   msedge
+   notepadqq
+   obsidian
+   opam
+   opera
+   pageedit
+   podman
+   polypane
+   privacybrowser
+   qcam
+   qmapshack
+   qutebrowser
+   rootlesskit
+   rpm
+   rssguard
+   runc
+   scide
+   signal-desktop
+   slack
+   slirp4netns
+   steam
+   stress-ng
+   surfshark
+   systemd-coredump
+   thunderbird
+   trinity
+   tup
+   tuxedo-control-center
+   userbindmount
+   uwsgi-core
+   vdens
+   virtiofsd
+   vivaldi-bin
+   vpnns
+   vscode
+   wike
+   wpcom
+3 processes have profiles defined.
+3 processes are in enforce mode.
+   /usr/sbin/chronyd (991) 
+   /usr/sbin/chronyd (1001) 
+   /usr/sbin/rsyslogd (1033) rsyslogd
+0 processes are in complain mode.
+0 processes are in prompt mode.
+0 processes are in kill mode.
+0 processes are unconfined but have a profile defined.
+0 processes are in mixed mode.
++ run.sh:159: sudo install -d -m 0755 /opt/securelab/apparmor
++ run.sh:160: printf 'Public lab text\n'
++ run.sh:160: sudo tee /opt/securelab/apparmor/allowed.txt
++ run.sh:161: printf 'Restricted lab text\n'
++ run.sh:161: sudo tee /opt/securelab/apparmor/denied.txt
++ run.sh:162: sudo chmod 0644 /opt/securelab/apparmor/allowed.txt /opt/securelab/apparmor/denied.txt
++ run.sh:163: sudo install -m 0755 /opt/securelab/bin/confinement_probe /opt/securelab/apparmor/probe
++ run.sh:165: sudo grep -q '^securelab-probe ' /sys/kernel/security/apparmor/profiles
++ run.sh:169: /opt/securelab/apparmor/probe unconfined
+/opt/securelab/apparmor/allowed.txt: ALLOWED
+/opt/securelab/apparmor/denied.txt: ALLOWED
++ run.sh:170: cat
++ run.sh:179: sudo install -m 0644 profile /etc/apparmor.d/securelab-probe
++ run.sh:180: sudo apparmor_parser -r /etc/apparmor.d/securelab-probe
++ run.sh:181: /opt/securelab/apparmor/probe confined
+/opt/securelab/apparmor/allowed.txt: ALLOWED
+/opt/securelab/apparmor/denied.txt: DENIED
++ run.sh:182: sudo aa-status
+apparmor module is loaded.
+181 profiles are loaded.
+105 profiles are in enforce mode.
+   /usr/bin/man
+   /usr/lib/snapd/snap-confine
+   /usr/sbin/chronyd
+   :glycin:bwrap
+   :glycin:loaders
+   alsamixer
+   babeld
+   bfdd
+   bgpd
+   bwrap
+   dig
+   dnstracer
+   docker-default
+   eigrpd
+   fabricd
+   fusermount3
+   gs
+   hostname
+   iotop-c
+   ipa_verify
+   irssi
+   isisd
+   john
+   ldpd
+   linux-boot-prober
+   locale
+   locale//compressor
+   lsb_release
+   lsblk
+   lsusb
+   man_filter
+   man_groff
+   mbsync
+   mosquitto
+   nc.openbsd
+   nhrpd
+   notify-send
+   nslookup
+   nvidia_modprobe
+   nvidia_modprobe//kmod
+   os-prober
+   ospf6d
+   ospfd
+   pathd
+   pbrd
+   pim6d
+   pimd
+   plasmashell
+   plasmashell//QtWebEngineProcess
+   proftpd
+   qpdf
+   ripd
+   ripngd
+   rsyslogd
+   sbuild
+   sbuild-abort
+   sbuild-adduser
+   sbuild-apt
+   sbuild-checkpackages
+   sbuild-clean
+   sbuild-createchroot
+   sbuild-destroychroot
+   sbuild-distupgrade
+   sbuild-hold
+   sbuild-shell
+   sbuild-unhold
+   sbuild-update
+   sbuild-upgrade
+   securelab-probe
+   ssh-keyscan
+   staticd
+   systemd-detect-virt
+   tcpdump
+   tinyproxy
+   tnftp
+   tnftp//cmds
+   tnftp//dash
+   tnftp//dash//more
+   transmission-cli
+   transmission-daemon
+   transmission-gtk
+   transmission-qt
+   tshark
+   tshark//dumpcap
+   ubuntu_pro_apt_news
+   ubuntu_pro_esm_cache
+   ubuntu_pro_esm_cache//apt_methods
+   ubuntu_pro_esm_cache//apt_methods_gpgv
+   ubuntu_pro_esm_cache//cloud_id
+   ubuntu_pro_esm_cache//dpkg
+   ubuntu_pro_esm_cache//ps
+   ubuntu_pro_esm_cache//ubuntu_distro_info
+   ubuntu_pro_esm_cache_systemctl
+   ubuntu_pro_esm_cache_systemd_detect_virt
+   unix-chkpwd
+   unpriv_bwrap
+   unprivileged_userns
+   vrrpd
+   wg
+   wg-quick
+   wg-quick//ip
+   wg-quick//nft
+   wg-quick//sysctl
+   who
+   znc
+2 profiles are in complain mode.
+   Xorg
+   Xorg_wrap
+0 profiles are in prompt mode.
+0 profiles are in kill mode.
+74 profiles are in unconfined mode.
+   1password
+   Discord
+   MongoDB Compass
+   QtWebEngineProcess
+   balena-etcher
+   brave
+   buildah
+   cam
+   ch-checkns
+   ch-run
+   chrome
+   chromium
+   crun
+   devhelp
+   element-desktop
+   epiphany
+   evolution
+   firefox
+   flatpak
+   foliate
+   geary
+   github-desktop
+   goldendict
+   kchmviewer
+   keybase
+   lc-compliance
+   libcamerify
+   linux-sandbox
+   loupe
+   lxc-attach
+   lxc-create
+   lxc-destroy
+   lxc-execute
+   lxc-stop
+   lxc-unshare
+   lxc-usernsexec
+   mmdebstrap
+   msedge
+   notepadqq
+   obsidian
+   opam
+   opera
+   pageedit
+   podman
+   polypane
+   privacybrowser
+   qcam
+   qmapshack
+   qutebrowser
+   rootlesskit
+   rpm
+   rssguard
+   runc
+   scide
+   signal-desktop
+   slack
+   slirp4netns
+   steam
+   stress-ng
+   surfshark
+   systemd-coredump
+   thunderbird
+   trinity
+   tup
+   tuxedo-control-center
+   userbindmount
+   uwsgi-core
+   vdens
+   virtiofsd
+   vivaldi-bin
+   vpnns
+   vscode
+   wike
+   wpcom
+3 processes have profiles defined.
+3 processes are in enforce mode.
+   /usr/sbin/chronyd (991) 
+   /usr/sbin/chronyd (1001) 
+   /usr/sbin/rsyslogd (1033) rsyslogd
+0 processes are in complain mode.
+0 processes are in prompt mode.
+0 processes are in kill mode.
+0 processes are unconfined but have a profile defined.
+0 processes are in mixed mode.
++ run.sh:183: sudo journalctl -k --since '5 minutes ago' --no-pager
++ run.sh:183: grep -E 'securelab-probe|apparmor='
+Nov 16 15:43:50 lima-securelab kernel: audit: type=1400 audit(1794824030.198:2): apparmor="STATUS" operation="profile_load" profile="unconfined" name="Discord" pid=580 comm="apparmor_parser"
+Nov 16 15:43:50 lima-securelab kernel: audit: type=1400 audit(1794824030.198:3): apparmor="STATUS" operation="profile_load" profile="unconfined" name="1password" pid=579 comm="apparmor_parser"
+Nov 16 15:43:50 lima-securelab kernel: audit: type=1400 audit(1794824030.199:4): apparmor="STATUS" operation="profile_load" profile="unconfined" name="QtWebEngineProcess" pid=586 comm="apparmor_parser"
+Nov 16 15:43:50 lima-securelab kernel: audit: type=1400 audit(1794824030.199:5): apparmor="STATUS" operation="profile_load" profile="unconfined" name=4D6F6E676F444220436F6D70617373 pid=585 comm="apparmor_parser"
+Nov 16 15:43:50 lima-securelab kernel: audit: type=1400 audit(1794824030.204:6): apparmor="STATUS" operation="profile_load" profile="unconfined" name="alsamixer" pid=589 comm="apparmor_parser"
+Nov 16 15:43:50 lima-securelab kernel: audit: type=1400 audit(1794824030.207:7): apparmor="STATUS" operation="profile_load" profile="unconfined" name="babeld" pid=592 comm="apparmor_parser"
+Nov 16 15:43:50 lima-securelab kernel: audit: type=1400 audit(1794824030.208:8): apparmor="STATUS" operation="profile_load" profile="unconfined" name="Xorg" pid=588 comm="apparmor_parser"
+Nov 16 15:43:50 lima-securelab kernel: audit: type=1400 audit(1794824030.208:9): apparmor="STATUS" operation="profile_load" profile="unconfined" name="Xorg_wrap" pid=588 comm="apparmor_parser"
+Nov 16 15:43:50 lima-securelab kernel: audit: type=1400 audit(1794824030.209:10): apparmor="STATUS" operation="profile_load" profile="unconfined" name="balena-etcher" pid=596 comm="apparmor_parser"
++ run.sh:211: echo 'MISSION 17 VERIFIED'
+MISSION 17 VERIFIED

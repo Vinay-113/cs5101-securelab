@@ -1,0 +1,88 @@
+UTC: 2026-11-16T10:23:55.387774+00:00
+Mission: 21
++ run.sh:2: set -euo pipefail
+++ run.sh:3: dirname /home/vinaypatil.guest/securelab/missions/run.sh
++ run.sh:3: source /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
+++ common.sh:2: set -euo pipefail
+++ common.sh:3: export LC_ALL=C
+++ common.sh:3: LC_ALL=C
+++++ common.sh:4: dirname /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
++++ common.sh:4: cd /home/vinaypatil.guest/securelab/missions/../scripts/..
++++ common.sh:4: pwd
+++ common.sh:4: ROOT=/home/vinaypatil.guest/securelab
+++ common.sh:5: : /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-21
+++ common.sh:6: mkdir -p /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-21
+++ common.sh:7: cd /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-21
+++ common.sh:8: BIN=/opt/securelab/bin
+++ common.sh:9: LAB=/opt/securelab
+++ common.sh:21: need_vm
++++ common.sh:11: uname -s
+++ common.sh:11: [[ Linux == Linux ]]
+++ common.sh:11: [[ -f /etc/securelab-vm ]]
+++ common.sh:12: sudo -n true
+++ common.sh:22: ulimit -c 0
++ run.sh:4: mission=21
++ run.sh:5: case "$mission" in
++ run.sh:200: uname -a
+Linux lima-securelab 7.0.0-43-generic #43-Ubuntu SMP PREEMPT_DYNAMIC Fri Oct 23 13:33:03 UTC 2026 aarch64 GNU/Linux
++ run.sh:200: uname -m
+aarch64
++ run.sh:200: cat /etc/os-release
+PRETTY_NAME="Ubuntu 26.04.1 LTS"
+NAME="Ubuntu"
+VERSION_ID="26.04"
+VERSION="26.04.1 LTS (Resolute Raccoon)"
+VERSION_CODENAME=resolute
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=resolute
+LOGO=ubuntu-logo
++ run.sh:201: systemd-detect-virt --vm
+apple
++ run.sh:202: lscpu
+Architecture:                            aarch64
+CPU op-mode(s):                          64-bit
+Byte Order:                              Little Endian
+CPU(s):                                  2
+On-line CPU(s) list:                     0,1
+Vendor ID:                               Apple
+Model name:                              -
+Model:                                   0
+Thread(s) per core:                      1
+Core(s) per cluster:                     2
+Socket(s):                               -
+Cluster(s):                              1
+Stepping:                                0x0
+BogoMIPS:                                48.00
+Flags:                                   fp asimd evtstrm aes pmull sha1 sha2 crc32 atomics fphp asimdhp cpuid asimdrdm jscvt fcma lrcpc dcpop sha3 asimddp sha512 asimdfhm dit uscat ilrcpc flagm sb paca pacg dcpodp flagm2 frint i8mm bf16 bti afp sme smei16i64 smef64f64 smei8i32 smef16f32 smeb16f32 smef32f32 sme2 smei16i32 smebi32i32
+NUMA node(s):                            1
+NUMA node0 CPU(s):                       0,1
+Vulnerability Gather data sampling:      Not affected
+Vulnerability Ghostwrite:                Not affected
+Vulnerability Indirect target selection: Not affected
+Vulnerability Itlb multihit:             Not affected
+Vulnerability L1tf:                      Not affected
+Vulnerability Mds:                       Not affected
+Vulnerability Meltdown:                  Not affected
+Vulnerability Mmio stale data:           Not affected
+Vulnerability Old microcode:             Not affected
+Vulnerability Reg file data sampling:    Not affected
+Vulnerability Retbleed:                  Not affected
+Vulnerability Spec rstack overflow:      Not affected
+Vulnerability Spec store bypass:         Vulnerable
+Vulnerability Spectre v1:                Mitigation; __user pointer sanitization
+Vulnerability Spectre v2:                Mitigation; CSV2, but not BHB
+Vulnerability Srbds:                     Not affected
+Vulnerability Tsa:                       Not affected
+Vulnerability Tsx async abort:           Not affected
+Vulnerability Vmscape:                   Not affected
++ run.sh:203: cat /sys/class/dmi/id/product_name
+Apple Virtualization Generic Platform
++ run.sh:204: echo 'Trust-boundary diagrams: docs/diagrams.md'
+Trust-boundary diagrams: docs/diagrams.md
++ run.sh:211: echo 'MISSION 21 VERIFIED'
+MISSION 21 VERIFIED

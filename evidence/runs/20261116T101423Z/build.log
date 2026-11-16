@@ -1,0 +1,56 @@
+rm -rf bin
+mkdir -p bin
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/identity.c -o bin/identity -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/syscall_demo.c -o bin/syscall_demo -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/address_space.c -o bin/address_space -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/pipe_ipc.c -o bin/pipe_ipc -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/shared_ipc.c -o bin/shared_ipc -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/bounded_copy.c -o bin/bounded_copy -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/confinement_probe.c -o bin/confinement_probe -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -pthread src/race_demo.c -o bin/race_unsafe -pie -Wl,-z,relro,-z,now,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -DUSE_MUTEX -pthread src/race_demo.c -o bin/race_mutex -pie -Wl,-z,relro,-z,now,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -fstack-protector-all -fPIE src/memory_overflow_demo.c -o bin/memory_protected -pie -Wl,-z,relro,-z,now,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -fno-stack-protector -fno-pie -no-pie src/memory_overflow_demo.c -o bin/memory_unprotected -Wl,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -fsanitize=address -fno-omit-frame-pointer src/memory_overflow_demo.c -o bin/memory_asan -pie -Wl,-z,relro,-z,now,-z,noexecstack
+rm -rf bin
+mkdir -p bin
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/identity.c -o bin/identity -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/syscall_demo.c -o bin/syscall_demo -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/address_space.c -o bin/address_space -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/pipe_ipc.c -o bin/pipe_ipc -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/shared_ipc.c -o bin/shared_ipc -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/bounded_copy.c -o bin/bounded_copy -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/confinement_probe.c -o bin/confinement_probe -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -pthread src/race_demo.c -o bin/race_unsafe -pie -Wl,-z,relro,-z,now,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -DUSE_MUTEX -pthread src/race_demo.c -o bin/race_mutex -pie -Wl,-z,relro,-z,now,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -fstack-protector-all -fPIE src/memory_overflow_demo.c -o bin/memory_protected -pie -Wl,-z,relro,-z,now,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -fno-stack-protector -fno-pie -no-pie src/memory_overflow_demo.c -o bin/memory_unprotected -Wl,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -fsanitize=address -fno-omit-frame-pointer src/memory_overflow_demo.c -o bin/memory_asan -pie -Wl,-z,relro,-z,now,-z,noexecstack
+rm -rf bin
+mkdir -p bin
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/identity.c -o bin/identity -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/syscall_demo.c -o bin/syscall_demo -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/address_space.c -o bin/address_space -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/pipe_ipc.c -o bin/pipe_ipc -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/shared_ipc.c -o bin/shared_ipc -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/bounded_copy.c -o bin/bounded_copy -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/confinement_probe.c -o bin/confinement_probe -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -pthread src/race_demo.c -o bin/race_unsafe -pie -Wl,-z,relro,-z,now,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -DUSE_MUTEX -pthread src/race_demo.c -o bin/race_mutex -pie -Wl,-z,relro,-z,now,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -fstack-protector-all -fPIE src/memory_overflow_demo.c -o bin/memory_protected -pie -Wl,-z,relro,-z,now,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -fno-stack-protector -fno-pie -no-pie src/memory_overflow_demo.c -o bin/memory_unprotected -Wl,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -fsanitize=address -fno-omit-frame-pointer src/memory_overflow_demo.c -o bin/memory_asan -pie -Wl,-z,relro,-z,now,-z,noexecstack
+rm -rf bin
+mkdir -p bin
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/identity.c -o bin/identity -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/syscall_demo.c -o bin/syscall_demo -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/address_space.c -o bin/address_space -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/pipe_ipc.c -o bin/pipe_ipc -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/shared_ipc.c -o bin/shared_ipc -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/bounded_copy.c -o bin/bounded_copy -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O2 -fstack-protector-strong -fPIE src/confinement_probe.c -o bin/confinement_probe -pie -Wl,-z,relro,-z,now,-z,noexecstack -pthread
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -pthread src/race_demo.c -o bin/race_unsafe -pie -Wl,-z,relro,-z,now,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -DUSE_MUTEX -pthread src/race_demo.c -o bin/race_mutex -pie -Wl,-z,relro,-z,now,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -fstack-protector-all -fPIE src/memory_overflow_demo.c -o bin/memory_protected -pie -Wl,-z,relro,-z,now,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -fno-stack-protector -fno-pie -no-pie src/memory_overflow_demo.c -o bin/memory_unprotected -Wl,-z,noexecstack
+cc -std=c11 -D_POSIX_C_SOURCE=200809L -Wall -Wextra -Wpedantic -g -O0 -fsanitize=address -fno-omit-frame-pointer src/memory_overflow_demo.c -o bin/memory_asan -pie -Wl,-z,relro,-z,now,-z,noexecstack

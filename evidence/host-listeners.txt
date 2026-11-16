@@ -1,0 +1,10 @@
+COMMAND   PID       USER   FD   TYPE             DEVICE SIZE/OFF NODE NAME
+limactl 90424 vinaypatil    7u  IPv4 0xc962da37ad973a15      0t0  TCP 127.0.0.1:53529 (LISTEN)
+limactl 90424 vinaypatil    8u  IPv4 0xaac46d864e31c5b8      0t0  UDP 127.0.0.1:64050
+limactl 90424 vinaypatil   21u  IPv4 0x2e622b836947a1f5      0t0  UDP 10.70.56.94:63102->185.125.190.122:123
+limactl 90424 vinaypatil   25u  IPv4 0x645d0f2b937042f5      0t0  TCP 127.0.0.1:53528 (LISTEN)
+limactl 90424 vinaypatil   26u  IPv4 0xbba792881b29f93b      0t0  TCP 127.0.0.1:53528->127.0.0.1:53534 (ESTABLISHED)
+limactl 90424 vinaypatil   27u  IPv4 0xcaf6cf636a3fa1fe      0t0  TCP 127.0.0.1:53528->127.0.0.1:53531 (CLOSE_WAIT)
+limactl 90424 vinaypatil   28u  IPv4 0x2026431e36ac3fe6      0t0  UDP 10.70.56.94:63439->91.189.91.113:123
+limactl 90424 vinaypatil   30u  IPv4 0xe240689bf5174ae6      0t0  UDP 10.70.56.94:52575->185.125.190.121:123
+limactl 90424 vinaypatil   33u  IPv4 0xdff829e618fe280f      0t0  UDP 10.70.56.94:58576->91.189.91.112:123

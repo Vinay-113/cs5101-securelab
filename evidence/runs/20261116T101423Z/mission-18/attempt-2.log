@@ -1,0 +1,63 @@
+UTC: 2026-11-16T10:17:30.685823+00:00
+Mission: 18
++ run.sh:2: set -euo pipefail
+++ run.sh:3: dirname /home/vinaypatil.guest/securelab/missions/run.sh
++ run.sh:3: source /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
+++ common.sh:2: set -euo pipefail
+++ common.sh:3: export LC_ALL=C
+++ common.sh:3: LC_ALL=C
+++++ common.sh:4: dirname /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
++++ common.sh:4: cd /home/vinaypatil.guest/securelab/missions/../scripts/..
++++ common.sh:4: pwd
+++ common.sh:4: ROOT=/home/vinaypatil.guest/securelab
+++ common.sh:5: : /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-18
+++ common.sh:6: mkdir -p /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-18
+++ common.sh:7: cd /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-18
+++ common.sh:8: BIN=/opt/securelab/bin
+++ common.sh:9: LAB=/opt/securelab
+++ common.sh:21: need_vm
++++ common.sh:11: uname -s
+++ common.sh:11: [[ Linux == Linux ]]
+++ common.sh:11: [[ -f /etc/securelab-vm ]]
+++ common.sh:12: sudo -n true
+++ common.sh:22: ulimit -c 0
++ run.sh:4: mission=18
++ run.sh:5: case "$mission" in
++ run.sh:186: echo 'Access-control comparison: notes/mission-18.md'
+Access-control comparison: notes/mission-18.md
++ run.sh:188: allow sudo -u alice cat /opt/securelab/secrets/incident.txt
++ common.sh:14: sudo -u alice cat /opt/securelab/secrets/incident.txt
+Incident: synthetic lab record
++ common.sh:14: printf 'VERIFIED ALLOWED: '
+VERIFIED ALLOWED: + common.sh:14: printf '%q ' sudo -u alice cat /opt/securelab/secrets/incident.txt
+sudo -u alice cat /opt/securelab/secrets/incident.txt + common.sh:14: printf '\n'
+
++ run.sh:189: deny sudo -u bob cat /opt/securelab/secrets/incident.txt
++ common.sh:16: local rc=0
++ common.sh:17: sudo -u bob cat /opt/securelab/secrets/incident.txt
+cat: /opt/securelab/secrets/incident.txt: Permission denied
++ common.sh:17: rc=1
++ common.sh:18: [[ 1 -ne 0 ]]
++ common.sh:19: printf 'VERIFIED DENIED (exit %s): ' 1
+VERIFIED DENIED (exit 1): + common.sh:19: printf '%q ' sudo -u bob cat /opt/securelab/secrets/incident.txt
+sudo -u bob cat /opt/securelab/secrets/incident.txt + common.sh:19: printf '\n'
+
++ run.sh:190: /opt/securelab/apparmor/probe confined
+/opt/securelab/apparmor/allowed.txt: ALLOWED
+/opt/securelab/apparmor/denied.txt: DENIED
++ run.sh:191: capsh --print
+Current: =
+Bounding set =cap_chown,cap_dac_override,cap_dac_read_search,cap_fowner,cap_fsetid,cap_kill,cap_setgid,cap_setuid,cap_setpcap,cap_linux_immutable,cap_net_bind_service,cap_net_broadcast,cap_net_admin,cap_net_raw,cap_ipc_lock,cap_ipc_owner,cap_sys_module,cap_sys_rawio,cap_sys_chroot,cap_sys_ptrace,cap_sys_pacct,cap_sys_admin,cap_sys_boot,cap_sys_nice,cap_sys_resource,cap_sys_time,cap_sys_tty_config,cap_mknod,cap_lease,cap_audit_write,cap_audit_control,cap_setfcap,cap_mac_override,cap_mac_admin,cap_syslog,cap_wake_alarm,cap_block_suspend,cap_audit_read,cap_perfmon,cap_bpf,cap_checkpoint_restore
+Ambient set =
+Current IAB: 
+Securebits: 00/0x0/1'b0 (no-new-privs=0)
+ secure-noroot: no (unlocked)
+ secure-no-suid-fixup: no (unlocked)
+ secure-keep-caps: no (unlocked)
+ secure-no-ambient-raise: no (unlocked)
+uid=501(vinaypatil) euid=501(vinaypatil)
+gid=1000(vinaypatil)
+groups=999(systemd-journal),1000(vinaypatil)
+Guessed mode: HYBRID (4)
++ run.sh:211: echo 'MISSION 18 VERIFIED'
+MISSION 18 VERIFIED

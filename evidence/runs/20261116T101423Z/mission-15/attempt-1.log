@@ -1,0 +1,114 @@
+UTC: 2026-11-16T10:14:28.258183+00:00
+Mission: 15
++ run.sh:2: set -euo pipefail
+++ run.sh:3: dirname /home/vinaypatil.guest/securelab/missions/run.sh
++ run.sh:3: source /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
+++ common.sh:2: set -euo pipefail
+++ common.sh:3: export LC_ALL=C
+++ common.sh:3: LC_ALL=C
+++++ common.sh:4: dirname /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
++++ common.sh:4: cd /home/vinaypatil.guest/securelab/missions/../scripts/..
++++ common.sh:4: pwd
+++ common.sh:4: ROOT=/home/vinaypatil.guest/securelab
+++ common.sh:5: : /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-15
+++ common.sh:6: mkdir -p /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-15
+++ common.sh:7: cd /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-15
+++ common.sh:8: BIN=/opt/securelab/bin
+++ common.sh:9: LAB=/opt/securelab
+++ common.sh:21: need_vm
++++ common.sh:11: uname -s
+++ common.sh:11: [[ Linux == Linux ]]
+++ common.sh:11: [[ -f /etc/securelab-vm ]]
+++ common.sh:12: sudo -n true
+++ common.sh:22: ulimit -c 0
++ run.sh:4: mission=15
++ run.sh:5: case "$mission" in
++ run.sh:131: pid=2562
++ run.sh:132: trap 'kill "$pid" 2>/dev/null || true' EXIT
++ run.sh:133: ps -p 2562 -o pid,ppid,uid,euid,nlwp,%cpu,%mem,args
++ run.sh:131: /opt/securelab/bin/address_space
+    PID    PPID   UID  EUID NLWP %CPU %MEM COMMAND
+   2562    2553   501   501    1  0.0  0.0 /opt/securelab/bin/address_space
++ run.sh:134: ls -l /proc/2562/fd
+total 0
+lr-x------ 1 vinaypatil vinaypatil 64 Nov 16 15:44 0 -> /dev/null
+l-wx------ 1 vinaypatil vinaypatil 64 Nov 16 15:44 1 -> /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-15/app-output.txt
+l-wx------ 1 vinaypatil vinaypatil 64 Nov 16 15:44 2 -> /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-15/attempt-1.log
++ run.sh:134: cat /proc/2562/status
+Name:	address_space
+Umask:	0002
+State:	S (sleeping)
+Tgid:	2562
+Ngid:	0
+Pid:	2562
+PPid:	2553
+TracerPid:	0
+Uid:	501	501	501	501
+Gid:	1000	1000	1000	1000
+FDSize:	256
+Groups:	999 1000 
+NStgid:	2562
+NSpid:	2562
+NSpgid:	1929
+NSsid:	1929
+Kthread:	0
+VmPeak:	    3228 kB
+VmSize:	    3228 kB
+VmLck:	       0 kB
+VmPin:	       0 kB
+VmHWM:	    1420 kB
+VmRSS:	    1420 kB
+RssAnon:	      88 kB
+RssFile:	    1332 kB
+RssShmem:	       0 kB
+VmData:	    1096 kB
+VmStk:	     132 kB
+VmExe:	       4 kB
+VmLib:	    1876 kB
+VmPTE:	      44 kB
+VmSwap:	       0 kB
+HugetlbPages:	       0 kB
+CoreDumping:	0
+THP_enabled:	1
+untag_mask:	0xffffffffffffff
+Threads:	1
+SigQ:	0/13691
+SigPnd:	0000000000000000
+ShdPnd:	0000000000000000
+SigBlk:	0000000000000000
+SigIgn:	0000000000000006
+SigCgt:	0000000000000000
+CapInh:	0000000000000000
+CapPrm:	0000000000000000
+CapEff:	0000000000000000
+CapBnd:	000001ffffffffff
+CapAmb:	0000000000000000
+NoNewPrivs:	0
+Seccomp:	0
+Seccomp_filters:	0
+Speculation_Store_Bypass:	vulnerable
+SpeculationIndirectBranch:	unknown
+Cpus_allowed:	3
+Cpus_allowed_list:	0-1
+Mems_allowed:	00000000,00000001
+Mems_allowed_list:	0
+voluntary_ctxt_switches:	1
+nonvoluntary_ctxt_switches:	0
++ run.sh:134: lsof -a -p 2562 -i
++ run.sh:134: [[ 1 == 1 ]]
++ run.sh:135: ss -lntup
+Netid State  Recv-Q Send-Q     Local Address:Port Peer Address:PortProcess
+udp   UNCONN 0      0              127.0.0.1:323       0.0.0.0:*          
+udp   UNCONN 0      0                0.0.0.0:5353      0.0.0.0:*          
+udp   UNCONN 0      0             127.0.0.54:53        0.0.0.0:*          
+udp   UNCONN 0      0          127.0.0.53%lo:53        0.0.0.0:*          
+udp   UNCONN 0      0      192.168.5.15%eth0:68        0.0.0.0:*          
+udp   UNCONN 0      0                  [::1]:323          [::]:*          
+udp   UNCONN 0      0                   [::]:5353         [::]:*          
+tcp   LISTEN 0      4096          127.0.0.54:53        0.0.0.0:*          
+tcp   LISTEN 0      4096       127.0.0.53%lo:53        0.0.0.0:*          
+tcp   LISTEN 0      4096             0.0.0.0:22        0.0.0.0:*          
+tcp   LISTEN 0      4096                [::]:22           [::]:*          
++ run.sh:211: echo 'MISSION 15 VERIFIED'
+MISSION 15 VERIFIED
++ run.sh:1: kill 2562

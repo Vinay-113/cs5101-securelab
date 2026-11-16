@@ -1,0 +1,7 @@
+#include <tunables/global>
+profile securelab-probe /opt/securelab/apparmor/probe {
+  #include <abstractions/base>
+  /opt/securelab/apparmor/probe mr,
+  /opt/securelab/apparmor/allowed.txt r,
+  audit deny /opt/securelab/apparmor/denied.txt r,
+}

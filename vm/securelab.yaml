@@ -1,0 +1,19 @@
+# Headless ARM64 Ubuntu LTS; guest experiments need no desktop environment.
+minimumLimaVersion: 2.0.0
+base:
+- template:_images/ubuntu-26.04
+vmType: vz
+arch: aarch64
+cpus: 2
+memory: 4GiB
+disk: 40GiB
+mounts: []
+containerd:
+  system: false
+  user: false
+portForwards:
+- guestPortRange: [1, 65535]
+  guestIP: 0.0.0.0
+  guestIPMustBeZero: false
+  proto: any
+  ignore: true

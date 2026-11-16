@@ -1,0 +1,68 @@
+UTC: 2026-11-16T10:14:24.264511+00:00
+Mission: 04
++ run.sh:2: set -euo pipefail
+++ run.sh:3: dirname /home/vinaypatil.guest/securelab/missions/run.sh
++ run.sh:3: source /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
+++ common.sh:2: set -euo pipefail
+++ common.sh:3: export LC_ALL=C
+++ common.sh:3: LC_ALL=C
+++++ common.sh:4: dirname /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
++++ common.sh:4: cd /home/vinaypatil.guest/securelab/missions/../scripts/..
++++ common.sh:4: pwd
+++ common.sh:4: ROOT=/home/vinaypatil.guest/securelab
+++ common.sh:5: : /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-04
+++ common.sh:6: mkdir -p /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-04
+++ common.sh:7: cd /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-04
+++ common.sh:8: BIN=/opt/securelab/bin
+++ common.sh:9: LAB=/opt/securelab
+++ common.sh:21: need_vm
++++ common.sh:11: uname -s
+++ common.sh:11: [[ Linux == Linux ]]
+++ common.sh:11: [[ -f /etc/securelab-vm ]]
+++ common.sh:12: sudo -n true
+++ common.sh:22: ulimit -c 0
++ run.sh:4: mission=04
++ run.sh:5: case "$mission" in
++ run.sh:20: pid=2103
++ run.sh:21: trap 'kill "$pid" 2>/dev/null || true' EXIT
++ run.sh:22: sleep 1
++ run.sh:20: /opt/securelab/bin/address_space
++ run.sh:23: cat addresses.txt
+PID = 2103
+&secret = 0xfffffcd521b4
+secret = 12345
+Inspect this process's maps for 30 seconds.
++ run.sh:23: cat /proc/2103/maps
++ run.sh:23: cat maps.txt
+c26e94480000-c26e94481000 r-xp 00000000 fd:01 840028                     /opt/securelab/bin/address_space
+c26e9449f000-c26e944a0000 r--p 0000f000 fd:01 840028                     /opt/securelab/bin/address_space
+c26e944a0000-c26e944a1000 rw-p 00010000 fd:01 840028                     /opt/securelab/bin/address_space
+c26e99166000-c26e99200000 rw-p 00000000 00:00 0                          [heap]
+eb8abc010000-eb8abc1b9000 r-xp 00000000 fd:01 3088                       /usr/lib/aarch64-linux-gnu/libc.so.6
+eb8abc1b9000-eb8abc1cd000 ---p 001a9000 fd:01 3088                       /usr/lib/aarch64-linux-gnu/libc.so.6
+eb8abc1cd000-eb8abc1d0000 r--p 001ad000 fd:01 3088                       /usr/lib/aarch64-linux-gnu/libc.so.6
+eb8abc1d0000-eb8abc1d2000 rw-p 001b0000 fd:01 3088                       /usr/lib/aarch64-linux-gnu/libc.so.6
+eb8abc1d2000-eb8abc1de000 rw-p 00000000 00:00 0 
+eb8abc1ee000-eb8abc218000 r-xp 00000000 fd:01 3085                       /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
+eb8abc21b000-eb8abc21d000 rw-p 00000000 00:00 0 
+eb8abc224000-eb8abc226000 rw-p 00000000 00:00 0 
+eb8abc226000-eb8abc22a000 r--p 00000000 00:00 0                          [vvar]
+eb8abc22a000-eb8abc22c000 r-xp 00000000 00:00 0                          [vdso]
+eb8abc22c000-eb8abc22e000 r--p 0002e000 fd:01 3085                       /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
+eb8abc22e000-eb8abc22f000 rw-p 00030000 fd:01 3085                       /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
+eb8abc22f000-eb8abc230000 rw-p 00000000 00:00 0 
+fffffcd32000-fffffcd53000 rw-p 00000000 00:00 0                          [stack]
++ run.sh:25: pid2=2108
++ run.sh:26: sleep 1
++ run.sh:25: /opt/securelab/bin/address_space
++ run.sh:26: cat addresses-second.txt
+PID = 2108
+&secret = 0xffffc6fb2d64
+secret = 12345
+Inspect this process's maps for 30 seconds.
++ run.sh:26: kill 2108
++ run.sh:26: wait 2108
++ run.sh:26: true
++ run.sh:211: echo 'MISSION 04 VERIFIED'
+MISSION 04 VERIFIED
++ run.sh:1: kill 2103

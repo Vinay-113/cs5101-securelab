@@ -1,0 +1,46 @@
+UTC: 2026-11-16T10:15:14.627534+00:00
+Mission: 20
++ run.sh:2: set -euo pipefail
+++ run.sh:3: dirname /home/vinaypatil.guest/securelab/missions/run.sh
++ run.sh:3: source /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
+++ common.sh:2: set -euo pipefail
+++ common.sh:3: export LC_ALL=C
+++ common.sh:3: LC_ALL=C
+++++ common.sh:4: dirname /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
++++ common.sh:4: cd /home/vinaypatil.guest/securelab/missions/../scripts/..
++++ common.sh:4: pwd
+++ common.sh:4: ROOT=/home/vinaypatil.guest/securelab
+++ common.sh:5: : /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-20
+++ common.sh:6: mkdir -p /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-20
+++ common.sh:7: cd /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-20
+++ common.sh:8: BIN=/opt/securelab/bin
+++ common.sh:9: LAB=/opt/securelab
+++ common.sh:21: need_vm
++++ common.sh:11: uname -s
+++ common.sh:11: [[ Linux == Linux ]]
+++ common.sh:11: [[ -f /etc/securelab-vm ]]
+++ common.sh:12: sudo -n true
+++ common.sh:22: ulimit -c 0
++ run.sh:4: mission=20
++ run.sh:5: case "$mission" in
++ run.sh:197: bash /home/vinaypatil.guest/securelab/scripts/local_ssh.sh
+Running as unit: securelab-local-ssh.service; invocation ID: 28af018cf99e4ce59dcfbbb9546f4f7f
+LISTEN 0      128        127.0.0.1:2222      0.0.0.0:*   
+LOCAL_SSH_SUCCESS
+uid=501(vinaypatil) gid=1000(vinaypatil) groups=1000(vinaypatil),999(systemd-journal)
+Nov 16 15:45:14 lima-securelab systemd[1]: Started securelab-local-ssh.service - [systemd-run] /usr/sbin/sshd -D -e -f /etc/ssh/securelab_local_config.
+Nov 16 15:45:14 lima-securelab sshd[3838]: Server listening on 127.0.0.1 port 2222.
+Nov 16 15:45:15 lima-securelab sshd[3846]: Connection from 127.0.0.1 port 33496 on 127.0.0.1 port 2222 rdomain ""
+Nov 16 15:45:15 lima-securelab sshd[3846]: Accepted key ED25519 SHA256:fQY8KKiUfj2QFwmR6TGQ2IfyDErVlOeZvY+d2Js+cCg found at /opt/securelab/ssh/vinaypatil.pub:1
+Nov 16 15:45:15 lima-securelab sshd[3846]: Postponed publickey for vinaypatil from 127.0.0.1 port 33496 ssh2 [preauth]
+Nov 16 15:45:15 lima-securelab sshd[3846]: Accepted key ED25519 SHA256:fQY8KKiUfj2QFwmR6TGQ2IfyDErVlOeZvY+d2Js+cCg found at /opt/securelab/ssh/vinaypatil.pub:1
+Nov 16 15:45:15 lima-securelab sshd[3846]: Accepted publickey for vinaypatil from 127.0.0.1 port 33496 ssh2: ED25519 SHA256:fQY8KKiUfj2QFwmR6TGQ2IfyDErVlOeZvY+d2Js+cCg
+Nov 16 15:45:15 lima-securelab sshd-session[3846]: pam_unix(sshd:session): session opened for user vinaypatil(uid=501) by vinaypatil(uid=0)
+Nov 16 15:45:15 lima-securelab sshd[3846]: User child is on pid 3903
+Nov 16 15:45:15 lima-securelab sshd-session[3846]: pam_unix(sshd:session): session closed for user vinaypatil
+listenaddress 127.0.0.1:2222
+permitrootlogin no
+pubkeyauthentication yes
+passwordauthentication no
++ run.sh:211: echo 'MISSION 20 VERIFIED'
+MISSION 20 VERIFIED

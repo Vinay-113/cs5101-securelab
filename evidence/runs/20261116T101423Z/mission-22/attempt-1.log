@@ -1,0 +1,439 @@
+UTC: 2026-11-16T10:15:16.009739+00:00
+Mission: 22
++ run.sh:2: set -euo pipefail
+++ run.sh:3: dirname /home/vinaypatil.guest/securelab/missions/run.sh
++ run.sh:3: source /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
+++ common.sh:2: set -euo pipefail
+++ common.sh:3: export LC_ALL=C
+++ common.sh:3: LC_ALL=C
+++++ common.sh:4: dirname /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
++++ common.sh:4: cd /home/vinaypatil.guest/securelab/missions/../scripts/..
++++ common.sh:4: pwd
+++ common.sh:4: ROOT=/home/vinaypatil.guest/securelab
+++ common.sh:5: : /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-22
+++ common.sh:6: mkdir -p /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-22
+++ common.sh:7: cd /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-22
+++ common.sh:8: BIN=/opt/securelab/bin
+++ common.sh:9: LAB=/opt/securelab
+++ common.sh:21: need_vm
++++ common.sh:11: uname -s
+++ common.sh:11: [[ Linux == Linux ]]
+++ common.sh:11: [[ -f /etc/securelab-vm ]]
+++ common.sh:12: sudo -n true
+++ common.sh:22: ulimit -c 0
++ run.sh:4: mission=22
++ run.sh:5: case "$mission" in
++ run.sh:207: bash /home/vinaypatil.guest/securelab/scripts/practice_challenge.sh /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-22
+F6 baseline before remediation: absent
+Running as unit: securelab-practice-listener.service; invocation ID: f8dfbf68444e4e8da1fa082bea59ee00
+Running as unit: securelab-practice-worker.service; invocation ID: e05b695379c647619104d28ecbfdb0c7
+2026-11-16T10:15:17+00:00
+alice:x:1000:1001:SECURELAB test account:/home/alice:/bin/bash
+bob:x:1001:1002:SECURELAB test account:/home/bob:/bin/bash
+uid=1000(alice) gid=1001(alice) groups=1001(alice),1003(securelab)
+uid=1001(bob) gid=1002(bob) groups=1002(bob)
+    PID    PPID   UID  EUID NLWP %CPU %MEM COMMAND
+      1       0     0     0    1  0.9  0.4 /usr/lib/systemd/systemd --switched-root --system --deserialize=56
+      2       0     0     0    1  0.0  0.0 [kthreadd]
+      3       2     0     0    1  0.0  0.0 [pool_workqueue_release]
+      4       2     0     0    1  0.0  0.0 [kworker/R-rcu_gp]
+      5       2     0     0    1  0.0  0.0 [kworker/R-sync_wq]
+      6       2     0     0    1  0.0  0.0 [kworker/R-kvfree_rcu_reclaim]
+      7       2     0     0    1  0.0  0.0 [kworker/R-slub_flushwq]
+      8       2     0     0    1  0.0  0.0 [kworker/R-netns]
+      9       2     0     0    1  0.0  0.0 [kworker/0:0-rcu_gp]
+     10       2     0     0    1  0.0  0.0 [kworker/0:0H-kblockd]
+     11       2     0     0    1  0.0  0.0 [kworker/0:1-mm_percpu_wq]
+     12       2     0     0    1  0.1  0.0 [kworker/u8:0-ext4-rsv-conversion]
+     13       2     0     0    1  0.0  0.0 [kworker/R-mm_percpu_wq]
+     14       2     0     0    1  0.0  0.0 [ksoftirqd/0]
+     15       2     0     0    1  0.0  0.0 [rcu_preempt]
+     16       2     0     0    1  0.0  0.0 [rcu_exp_par_gp_kthread_worker/0]
+     17       2     0     0    1  0.0  0.0 [rcu_exp_gp_kthread_worker]
+     18       2     0     0    1  0.0  0.0 [migration/0]
+     19       2     0     0    1  0.0  0.0 [idle_inject/0]
+     20       2     0     0    1  0.0  0.0 [cpuhp/0]
+     21       2     0     0    1  0.0  0.0 [cpuhp/1]
+     22       2     0     0    1  0.0  0.0 [idle_inject/1]
+     23       2     0     0    1  0.0  0.0 [migration/1]
+     24       2     0     0    1  0.0  0.0 [ksoftirqd/1]
+     25       2     0     0    1  0.0  0.0 [kworker/1:0-events]
+     26       2     0     0    1  0.0  0.0 [kworker/1:0H-kblockd]
+     27       2     0     0    1  0.0  0.0 [kdevtmpfs]
+     28       2     0     0    1  0.0  0.0 [kworker/R-inet_frag_wq]
+     29       2     0     0    1  0.0  0.0 [rcu_tasks_kthread]
+     30       2     0     0    1  0.0  0.0 [rcu_tasks_rude_kthread]
+     31       2     0     0    1  0.0  0.0 [kauditd]
+     32       2     0     0    1  0.0  0.0 [khungtaskd]
+     33       2     0     0    1  0.0  0.0 [oom_reaper]
+     34       2     0     0    1  0.0  0.0 [kworker/u8:1-ext4-rsv-conversion]
+     35       2     0     0    1  0.0  0.0 [kworker/R-writeback]
+     36       2     0     0    1  0.0  0.0 [kcompactd0]
+     37       2     0     0    1  0.0  0.0 [ksmd]
+     38       2     0     0    1  0.0  0.0 [khugepaged]
+     39       2     0     0    1  0.0  0.0 [kworker/R-kblockd]
+     40       2     0     0    1  0.0  0.0 [kworker/R-blkcg_punt_bio]
+     41       2     0     0    1  0.0  0.0 [kworker/R-kintegrityd]
+     42       2     0     0    1  0.0  0.0 [kworker/R-tpm_dev_wq]
+     43       2     0     0    1  0.0  0.0 [kworker/R-ata_sff]
+     44       2     0     0    1  0.0  0.0 [kworker/R-md_bitmap]
+     45       2     0     0    1  0.0  0.0 [kworker/R-md_llbitmap_io]
+     46       2     0     0    1  0.0  0.0 [kworker/R-md_llbitmap_unplug]
+     47       2     0     0    1  0.0  0.0 [kworker/R-edac-poller]
+     48       2     0     0    1  0.0  0.0 [kworker/R-devfreq_wq]
+     49       2     0     0    1  0.0  0.0 [watchdogd]
+     50       2     0     0    1  0.0  0.0 [kworker/1:1-cgwb_release]
+     51       2     0     0    1  0.0  0.0 [kworker/R-quota_events_unbound]
+     52       2     0     0    1  0.0  0.0 [kswapd0]
+     53       2     0     0    1  0.0  0.0 [kworker/u8:2-ext4-rsv-conversion]
+     54       2     0     0    1  0.0  0.0 [ecryptfs-kthread]
+     55       2     0     0    1  0.0  0.0 [kworker/R-kthrotld]
+     56       2     0     0    1  0.0  0.0 [kworker/u9:0]
+     57       2     0     0    1  0.0  0.0 [kworker/R-acpi_thermal_pm]
+     58       2     0     0    1  0.0  0.0 [khvcd]
+     59       2     0     0    1  0.0  0.0 [kworker/R-mld]
+     60       2     0     0    1  0.0  0.0 [kworker/R-ipv6_addrconf]
+     61       2     0     0    1  0.0  0.0 [kworker/R-kstrp]
+     64       2     0     0    1  0.0  0.0 [kworker/u8:3-events_power_efficient]
+     66       2     0     0    1  0.0  0.0 [kworker/R-charger_manager]
+     67       2     0     0    1  0.0  0.0 [irq/13-ACPI:Event]
+     68       2     0     0    1  0.0  0.0 [kworker/0:2-cgroup_free]
+    124       2     0     0    1  0.0  0.0 [kworker/u8:4-ext4-rsv-conversion]
+    126       2     0     0    1  0.0  0.0 [kworker/0:3-events]
+    127       2     0     0    1  0.0  0.0 [kworker/0:4-events]
+    226       2     0     0    1  0.0  0.0 [kworker/1:2-events]
+    305       2     0     0    1  0.0  0.0 [kworker/0:1H-kblockd]
+    310       2     0     0    1  0.0  0.0 [jbd2/vda1-8]
+    311       2     0     0    1  0.0  0.0 [kworker/R-ext4-rsv-conversion]
+    375       2     0     0    1  0.0  0.0 [hwrng]
+    419       1     0     0    1  0.1  0.3 /usr/lib/systemd/systemd-journald
+    438       2     0     0    1  0.0  0.0 [kworker/R-kmpathd]
+    439       2     0     0    1  0.0  0.0 [kworker/R-kmpath_handlerd]
+    441       1     0     0    8  0.0  0.4 /usr/sbin/multipathd -d -s
+    471       1     0     0    1  0.1  0.3 /usr/lib/systemd/systemd-udevd
+    476       2     0     0    1  0.0  0.0 [kworker/1:1H-kblockd]
+    477       1   989   989    1  0.0  0.3 /usr/lib/systemd/systemd-resolved
+    480       2     0     0    1  0.0  0.0 [psimon]
+    547       2     0     0    1  0.0  0.0 [jbd2/vda13-8]
+    548       2     0     0    1  0.0  0.0 [kworker/R-ext4-rsv-conversion]
+    578       2     0     0    1  0.0  0.0 [kworker/0:5-cgroup_bpf_destroy]
+    597       1     0     0    2  0.0  0.0 /usr/sbin/auditd
+    776       1   998   998    1  0.0  0.3 /usr/lib/systemd/systemd-networkd
+    807       2     0     0    1  0.0  0.0 [kworker/R-cfg80211]
+    867       1     0     0    1  0.0  0.0 /bin/sh /usr/lib/systemd/scripts/chronyd-starter.sh -n -F 1
+    869       1     0     0    1  0.0  0.0 /usr/sbin/cron -f -P
+    870       1   995   995    1  0.0  0.1 @dbus-daemon --system --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+    878       1     0     0    9  0.9  1.1 /usr/local/bin/lima-guestagent daemon --vsock-port 2222 --runtime-dir=/run/lima-guestagent
+    881       1     0     0    1  0.0  0.7 /usr/bin/python3 /usr/bin/networkd-dispatcher --run-startup-triggers
+    882       1   984   984    4  0.0  0.4 /usr/lib/polkit-1/polkitd --no-debug --log-level=notice
+    892       1     0     0    1  0.0  0.2 /usr/lib/systemd/systemd-logind
+    900       1     0     0    7  0.0  0.6 /usr/libexec/udisks2/udisksd
+    914       2     0     0    1  0.0  0.0 [kworker/1:3-cgroup_free]
+    915       2     0     0    1  0.0  0.0 [kworker/1:4-events]
+    931       1     0     0    1  0.0  0.1 sshd: /usr/sbin/sshd -D [listener] 0 of 10-100 startups
+    933       1     0     0    1  0.0  0.0 /usr/sbin/agetty --noreset --noclear --issue-file=/etc/issue:/etc/issue.d:/run/issue.d:/usr/lib/issue.d --keep-baud 115200,57600,38400,9600 - vt220
+    939       2     0     0    1  0.0  0.0 [kworker/u8:5-writeback]
+    946       1     0     0    1  0.0  0.0 /usr/sbin/agetty --noreset --noclear --issue-file=/etc/issue:/etc/issue.d:/run/issue.d:/usr/lib/issue.d - linux
+    986       1     0     0    9  0.8  1.6 /usr/bin/containerd
+    991     867   988   988    1  0.0  0.1 /usr/sbin/chronyd -n -F 1
+   1001     991   988   988    1  0.0  0.0 /usr/sbin/chronyd -n -F 1
+   1022       1     0     0    2  0.0  0.8 /usr/bin/python3 /usr/share/unattended-upgrades/unattended-upgrade-shutdown --wait-for-signal
+   1033       1   100   100    4  0.0  0.2 /usr/sbin/rsyslogd -n -iNONE
+   1054       1   501   501    1  0.0  0.3 /usr/lib/systemd/systemd --user
+   1061       1     0     0    4  0.0  0.5 /usr/sbin/ModemManager
+   1064       2     0     0    1  0.0  0.0 [kworker/u8:6-flush-253:0]
+   1066    1054   501   501    1  0.0  0.0 (sd-pam)
+   1133       1     0     0   11  0.5  2.9 /usr/bin/dockerd -H fd:// --containerd=/run/containerd/containerd.sock
+   1555       1     0     0    1  0.0  0.2 sshd-session: [accepted]
+   1563    1555     0     0    1  0.0  0.0 [sshd] <defunct>
+   1564    1555   987   987    1  0.0  0.2 sshd-auth: [session-auth]
+   1788       1     0     0    1  0.0  0.2 sshd-session: vinaypatil [priv]
+   1790    1788     0     0    1  0.0  0.0 [sshd] <defunct>
+   1838    1788   501   501    1  0.0  0.1 sshd-session: vinaypatil@notty
+   1929    1838   501   501    1  0.2  0.5 python3 scripts/run_lab.py
+   2269    1054   501   501    1  0.0  0.1 /usr/bin/dbus-daemon --session --address=systemd: --nofork --nopidfile --systemd-activation --syslog-only
+   3653       2     0     0    1  0.0  0.0 [psimon]
+   3660       1 65534 65534    1  0.2  0.2 /usr/bin/sleep infinity
+   3738       1     0     0    5  0.5  0.7 /usr/libexec/packagekitd
+   3935    1929   501   501    1  0.0  0.0 bash -x /home/vinaypatil.guest/securelab/missions/run.sh 22
+   3944    3935   501   501    1  0.0  0.0 bash /home/vinaypatil.guest/securelab/scripts/practice_challenge.sh /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-22
+   3980       1     0     0    1  0.9  0.5 /usr/bin/python3 -m http.server 8088 --bind 127.0.0.1
+   3984       1     0     0    1  0.0  0.1 /usr/bin/sleep infinity
+   3990    3944   501   501    1  0.0  0.1 ps -eo pid,ppid,uid,euid,nlwp,pcpu,pmem,args
+755 root:securelab /opt/securelab/practice
+644 root:securelab /opt/securelab/practice/secret.txt
+666 root:securelab /opt/securelab/practice/config.txt
+777 root:securelab /opt/securelab/practice/dropbox
+# file: /opt/securelab/practice/secret.txt
+# owner: root
+# group: securelab
+user::rw-
+group::r--
+other::r--
+
+# file: /opt/securelab/practice/config.txt
+# owner: root
+# group: securelab
+user::rw-
+group::rw-
+other::rw-
+
+  UNIT                                  LOAD   ACTIVE SUB     DESCRIPTION
+  auditd.service                        loaded active running Security Audit Logging Service
+  chrony.service                        loaded active running chrony, an NTP client/server
+  containerd.service                    loaded active running containerd container runtime
+  cron.service                          loaded active running Regular background program processing daemon
+  dbus.service                          loaded active running D-Bus System Message Bus
+  docker.service                        loaded active running Docker Application Container Engine
+  getty@tty1.service                    loaded active running Getty on tty1
+  lima-guestagent.service               loaded active running lima-guestagent
+  ModemManager.service                  loaded active running Modem Manager
+  multipathd.service                    loaded active running Device-Mapper Multipath Device Controller
+  networkd-dispatcher.service           loaded active running Dispatcher daemon for systemd-networkd
+  packagekit.service                    loaded active running PackageKit Daemon
+  polkit.service                        loaded active running Authorization Manager
+  rsyslog.service                       loaded active running System Logging Service
+  securelab-practice-listener.service   loaded active running [systemd-run] /usr/bin/python3 -m http.server 8088 --bind 127.0.0.1
+  securelab-practice-worker.service     loaded active running [systemd-run] /usr/bin/sleep infinity
+  securelab-worker.service              loaded active running SECURELAB confined teaching worker
+  serial-getty@hvc0.service             loaded active running Serial Getty on hvc0
+  ssh.service                           loaded active running OpenBSD Secure Shell server
+  sshd@1-4097-3:22-2:4106111368.service loaded active running OpenBSD Secure Shell server per-connection daemon
+  sshd@4-2-3:22-2:3195371267.service    loaded active running OpenBSD Secure Shell server per-connection daemon
+  systemd-journald.service              loaded active running Journal Service
+  systemd-logind.service                loaded active running User Login Management
+  systemd-networkd.service              loaded active running Network Management
+  systemd-resolved.service              loaded active running Network Name Resolution
+  systemd-udevd.service                 loaded active running Rule-based Manager for Device Events and Files
+  udisks2.service                       loaded active running Disk Manager
+  unattended-upgrades.service           loaded active running Unattended Upgrades Shutdown
+  user@501.service                      loaded active running User Manager for UID 501
+
+Legend: LOAD   -> Reflects whether the unit definition was properly loaded.
+        ACTIVE -> The high-level unit activation state, i.e. generalization of SUB.
+        SUB    -> The low-level unit activation state, values depend on unit type.
+
+29 loaded units listed.
+Netid State  Recv-Q Send-Q     Local Address:Port Peer Address:PortProcess                                                
+udp   UNCONN 0      0              127.0.0.1:323       0.0.0.0:*    users:(("chronyd",pid=991,fd=4))                      
+udp   UNCONN 0      0                0.0.0.0:5353      0.0.0.0:*    users:(("systemd-resolve",pid=477,fd=13))             
+udp   UNCONN 0      0             127.0.0.54:53        0.0.0.0:*    users:(("systemd-resolve",pid=477,fd=21))             
+udp   UNCONN 0      0          127.0.0.53%lo:53        0.0.0.0:*    users:(("systemd-resolve",pid=477,fd=19))             
+udp   UNCONN 0      0      192.168.5.15%eth0:68        0.0.0.0:*    users:(("systemd-network",pid=776,fd=33))             
+udp   UNCONN 0      0                  [::1]:323          [::]:*    users:(("chronyd",pid=991,fd=5))                      
+udp   UNCONN 0      0                   [::]:5353         [::]:*    users:(("systemd-resolve",pid=477,fd=14))             
+tcp   LISTEN 0      4096          127.0.0.54:53        0.0.0.0:*    users:(("systemd-resolve",pid=477,fd=22))             
+tcp   LISTEN 0      5              127.0.0.1:8088      0.0.0.0:*    users:(("python3",pid=3980,fd=3))                     
+tcp   LISTEN 0      4096       127.0.0.53%lo:53        0.0.0.0:*    users:(("systemd-resolve",pid=477,fd=20))             
+tcp   LISTEN 0      4096             0.0.0.0:22        0.0.0.0:*    users:(("sshd",pid=931,fd=3),("systemd",pid=1,fd=284))
+tcp   LISTEN 0      4096                [::]:22           [::]:*    users:(("sshd",pid=931,fd=4),("systemd",pid=1,fd=285))
+apparmor module is loaded.
+181 profiles are loaded.
+105 profiles are in enforce mode.
+   /usr/bin/man
+   /usr/lib/snapd/snap-confine
+   /usr/sbin/chronyd
+   :glycin:bwrap
+   :glycin:loaders
+   alsamixer
+   babeld
+   bfdd
+   bgpd
+   bwrap
+   dig
+   dnstracer
+   docker-default
+   eigrpd
+   fabricd
+   fusermount3
+   gs
+   hostname
+   iotop-c
+   ipa_verify
+   irssi
+   isisd
+   john
+   ldpd
+   linux-boot-prober
+   locale
+   locale//compressor
+   lsb_release
+   lsblk
+   lsusb
+   man_filter
+   man_groff
+   mbsync
+   mosquitto
+   nc.openbsd
+   nhrpd
+   notify-send
+   nslookup
+   nvidia_modprobe
+   nvidia_modprobe//kmod
+   os-prober
+   ospf6d
+   ospfd
+   pathd
+   pbrd
+   pim6d
+   pimd
+   plasmashell
+   plasmashell//QtWebEngineProcess
+   proftpd
+   qpdf
+   ripd
+   ripngd
+   rsyslogd
+   sbuild
+   sbuild-abort
+   sbuild-adduser
+   sbuild-apt
+   sbuild-checkpackages
+   sbuild-clean
+   sbuild-createchroot
+   sbuild-destroychroot
+   sbuild-distupgrade
+   sbuild-hold
+   sbuild-shell
+   sbuild-unhold
+   sbuild-update
+   sbuild-upgrade
+   securelab-probe
+   ssh-keyscan
+   staticd
+   systemd-detect-virt
+   tcpdump
+   tinyproxy
+   tnftp
+   tnftp//cmds
+   tnftp//dash
+   tnftp//dash//more
+   transmission-cli
+   transmission-daemon
+   transmission-gtk
+   transmission-qt
+   tshark
+   tshark//dumpcap
+   ubuntu_pro_apt_news
+   ubuntu_pro_esm_cache
+   ubuntu_pro_esm_cache//apt_methods
+   ubuntu_pro_esm_cache//apt_methods_gpgv
+   ubuntu_pro_esm_cache//cloud_id
+   ubuntu_pro_esm_cache//dpkg
+   ubuntu_pro_esm_cache//ps
+   ubuntu_pro_esm_cache//ubuntu_distro_info
+   ubuntu_pro_esm_cache_systemctl
+   ubuntu_pro_esm_cache_systemd_detect_virt
+   unix-chkpwd
+   unpriv_bwrap
+   unprivileged_userns
+   vrrpd
+   wg
+   wg-quick
+   wg-quick//ip
+   wg-quick//nft
+   wg-quick//sysctl
+   who
+   znc
+2 profiles are in complain mode.
+   Xorg
+   Xorg_wrap
+0 profiles are in prompt mode.
+0 profiles are in kill mode.
+74 profiles are in unconfined mode.
+   1password
+   Discord
+   MongoDB Compass
+   QtWebEngineProcess
+   balena-etcher
+   brave
+   buildah
+   cam
+   ch-checkns
+   ch-run
+   chrome
+   chromium
+   crun
+   devhelp
+   element-desktop
+   epiphany
+   evolution
+   firefox
+   flatpak
+   foliate
+   geary
+   github-desktop
+   goldendict
+   kchmviewer
+   keybase
+   lc-compliance
+   libcamerify
+   linux-sandbox
+   loupe
+   lxc-attach
+   lxc-create
+   lxc-destroy
+   lxc-execute
+   lxc-stop
+   lxc-unshare
+   lxc-usernsexec
+   mmdebstrap
+   msedge
+   notepadqq
+   obsidian
+   opam
+   opera
+   pageedit
+   podman
+   polypane
+   privacybrowser
+   qcam
+   qmapshack
+   qutebrowser
+   rootlesskit
+   rpm
+   rssguard
+   runc
+   scide
+   signal-desktop
+   slack
+   slirp4netns
+   steam
+   stress-ng
+   surfshark
+   systemd-coredump
+   thunderbird
+   trinity
+   tup
+   tuxedo-control-center
+   userbindmount
+   uwsgi-core
+   vdens
+   virtiofsd
+   vivaldi-bin
+   vpnns
+   vscode
+   wike
+   wpcom
+3 processes have profiles defined.
+3 processes are in enforce mode.
+   /usr/sbin/chronyd (991) 
+   /usr/sbin/chronyd (1001) 
+   /usr/sbin/rsyslogd (1033) rsyslogd
+0 processes are in complain mode.
+0 processes are in prompt mode.
+0 processes are in kill mode.
+0 processes are unconfined but have a profile defined.
+0 processes are in mixed mode.
+Synthetic incident record
+cat: /opt/securelab/practice/secret.txt: Permission denied
+Synthetic incident record
+F1 VERIFIED: unauthorized read denied; authorized read retained
+sh: 1: cannot create /opt/securelab/practice/config.txt: Permission denied
+F2 VERIFIED: unauthorized configuration write denied
+touch: setting times of '/opt/securelab/practice/dropbox/bob-after': Permission denied
+F3 VERIFIED: unauthorized directory creation denied
+F4 VERIFIED: unnecessary listener absent
+Running as unit: securelab-practice-worker-fixed.service; invocation ID: 45388bb77a1b4fac9b1652e9c1fa7a16
+    PID   UID  EUID COMMAND
+   4060     0     0 (sleep)

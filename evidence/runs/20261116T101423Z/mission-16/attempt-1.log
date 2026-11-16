@@ -1,0 +1,146 @@
+UTC: 2026-11-16T10:14:28.290343+00:00
+Mission: 16
++ run.sh:2: set -euo pipefail
+++ run.sh:3: dirname /home/vinaypatil.guest/securelab/missions/run.sh
++ run.sh:3: source /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
+++ common.sh:2: set -euo pipefail
+++ common.sh:3: export LC_ALL=C
+++ common.sh:3: LC_ALL=C
+++++ common.sh:4: dirname /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
++++ common.sh:4: cd /home/vinaypatil.guest/securelab/missions/../scripts/..
++++ common.sh:4: pwd
+++ common.sh:4: ROOT=/home/vinaypatil.guest/securelab
+++ common.sh:5: : /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-16
+++ common.sh:6: mkdir -p /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-16
+++ common.sh:7: cd /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-16
+++ common.sh:8: BIN=/opt/securelab/bin
+++ common.sh:9: LAB=/opt/securelab
+++ common.sh:21: need_vm
++++ common.sh:11: uname -s
+++ common.sh:11: [[ Linux == Linux ]]
+++ common.sh:11: [[ -f /etc/securelab-vm ]]
+++ common.sh:12: sudo -n true
+++ common.sh:22: ulimit -c 0
++ run.sh:4: mission=16
++ run.sh:5: case "$mission" in
++ run.sh:138: sudo docker run --rm hello-world
+
+Hello from Docker!
+This message shows that your installation appears to be working correctly.
+
+To generate this message, Docker took the following steps:
+ 1. The Docker client contacted the Docker daemon.
+ 2. The Docker daemon pulled the "hello-world" image from the Docker Hub.
+    (arm64v8)
+ 3. The Docker daemon created a new container from that image which runs the
+    executable that produces the output you are currently reading.
+ 4. The Docker daemon streamed that output to the Docker client, which sent it
+    to your terminal.
+
+To try something more ambitious, you can run an Ubuntu container with:
+ $ docker run -it ubuntu bash
+
+Share images, automate workflows, and more with a free Docker ID:
+ https://hub.docker.com/
+
+For more examples and ideas, visit:
+ https://docs.docker.com/get-started/
+
++ run.sh:139: sudo docker run --rm ubuntu:26.04 uname -a
+Linux 1a8400882803 7.0.0-43-generic #43-Ubuntu SMP PREEMPT_DYNAMIC Fri Oct 23 13:33:03 UTC 2026 aarch64 GNU/Linux
++ run.sh:140: sudo docker run --rm ubuntu:26.04 cat /etc/os-release
+PRETTY_NAME="Ubuntu 26.04.1 LTS"
+NAME="Ubuntu"
+VERSION_ID="26.04"
+VERSION="26.04.1 LTS (Resolute Raccoon)"
+VERSION_CODENAME=resolute
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=resolute
+LOGO=ubuntu-logo
++ run.sh:141: sudo docker build -t securelab/ubuntu:26.04 -f /home/vinaypatil.guest/securelab/vm/Dockerfile /home/vinaypatil.guest/securelab/vm
+#0 building with "default" instance using docker driver
+
+#1 [internal] load build definition from Dockerfile
+#1 transferring dockerfile: 263B done
+#1 DONE 0.0s
+
+#2 [internal] load metadata for docker.io/library/ubuntu:26.04
+#2 DONE 0.0s
+
+#3 [internal] load .dockerignore
+#3 transferring context: 2B done
+#3 DONE 0.0s
+
+#4 [1/2] FROM docker.io/library/ubuntu:26.04@sha256:d66b366dac61b575bee2aef07e9c26e8070096fbe84a3d4d3eb0da069b5d76db
+#4 resolve docker.io/library/ubuntu:26.04@sha256:d66b366dac61b575bee2aef07e9c26e8070096fbe84a3d4d3eb0da069b5d76db done
+#4 extracting sha256:7f2c2ca81066ea08302554fea387f3df4b714e7d98ea9c9d1994683b4668b905
+#4 extracting sha256:7f2c2ca81066ea08302554fea387f3df4b714e7d98ea9c9d1994683b4668b905 0.6s done
+#4 DONE 0.7s
+
+#4 [1/2] FROM docker.io/library/ubuntu:26.04@sha256:d66b366dac61b575bee2aef07e9c26e8070096fbe84a3d4d3eb0da069b5d76db
+#4 extracting sha256:cedc468d06b2395acfbe15d469c1c490e32250dfff923a25b48590254da93297 done
+#4 DONE 0.7s
+
+#5 [2/2] RUN apt-get update && apt-get install -y --no-install-recommends procps     && rm -rf /var/lib/apt/lists/*
+#5 0.444 Get:1 http://archive.ubuntu.com/ubuntu resolute InRelease [136 kB]
+#5 0.451 Get:2 http://security.ubuntu.com/ubuntu resolute-security InRelease [137 kB]
+#5 1.190 Get:3 http://archive.ubuntu.com/ubuntu resolute-updates InRelease [137 kB]
+#5 1.197 Get:4 http://security.ubuntu.com/ubuntu resolute-security/universe arm64 Packages [262 kB]
+#5 1.690 Get:5 http://archive.ubuntu.com/ubuntu resolute-backports InRelease [137 kB]
+#5 1.850 Get:6 http://security.ubuntu.com/ubuntu resolute-security/restricted arm64 Packages [969 kB]
+#5 2.303 Get:7 http://archive.ubuntu.com/ubuntu resolute/restricted arm64 Packages [231 kB]
+#5 3.082 Get:8 http://archive.ubuntu.com/ubuntu resolute/universe arm64 Packages [19.9 MB]
+#5 3.457 Get:9 http://security.ubuntu.com/ubuntu resolute-security/multiverse arm64 Packages [24.5 kB]
+#5 3.459 Get:10 http://security.ubuntu.com/ubuntu resolute-security/main arm64 Packages [930 kB]
+#5 33.12 Get:11 http://archive.ubuntu.com/ubuntu resolute/multiverse arm64 Packages [298 kB]
+#5 33.88 Get:12 http://archive.ubuntu.com/ubuntu resolute/main arm64 Packages [1860 kB]
+#5 37.55 Get:13 http://archive.ubuntu.com/ubuntu resolute-updates/restricted arm64 Packages [989 kB]
+#5 38.98 Get:14 http://archive.ubuntu.com/ubuntu resolute-updates/multiverse arm64 Packages [26.3 kB]
+#5 39.02 Get:15 http://archive.ubuntu.com/ubuntu resolute-updates/main arm64 Packages [1120 kB]
+#5 40.61 Get:16 http://archive.ubuntu.com/ubuntu resolute-updates/universe arm64 Packages [473 kB]
+#5 41.23 Get:17 http://archive.ubuntu.com/ubuntu resolute-backports/universe arm64 Packages [3309 B]
+#5 41.25 Fetched 27.6 MB in 41s (672 kB/s)
+#5 41.25 Reading package lists...
+#5 41.62 Reading package lists...
+#5 41.95 Building dependency tree...
+#5 42.03 Reading state information...
+#5 42.04 procps is already the newest version (2:4.0.4-9ubuntu1).
+#5 42.04 Solving dependencies...
+#5 42.14 0 upgraded, 0 newly installed, 0 to remove and 4 not upgraded.
+#5 DONE 42.2s
+
+#6 exporting to image
+#6 exporting layers 0.0s done
+#6 exporting manifest sha256:c60e04882de3a40cb2cc73417b3d087154eba77784fabcd52a25066d926876dc done
+#6 exporting config sha256:11647fd1d897511119d323a6b0cd5f706317d170a33c591d0e6fa10c3ad52f9b done
+#6 exporting attestation manifest sha256:1d06d06f8a33db2bfcf41cc7cb1f5c03813e84885e29b19d00ab244eb271a757 done
+#6 exporting manifest list sha256:852b1ca23d518962ec345f91b3c4fff07e0953f022291b23748a52ca14ca4582 done
+#6 naming to docker.io/securelab/ubuntu:26.04 done
+#6 unpacking to docker.io/securelab/ubuntu:26.04 done
+#6 DONE 0.1s
++ run.sh:142: sudo docker run --rm securelab/ubuntu:26.04 ps -ef
+UID          PID    PPID  C STIME TTY          TIME CMD
+root           1       0  0 10:15 ?        00:00:00 ps -ef
++ run.sh:143: echo 'Guest PID namespace:'
+Guest PID namespace:
++ run.sh:143: readlink /proc/self/ns/pid
+pid:[4026531836]
++ run.sh:144: sudo docker run --rm --read-only --cap-drop=ALL --security-opt=no-new-privileges --network=none --memory=64m --cpus=0.5 --pids-limit=32 ubuntu:26.04 sh -c $'\n   echo "Container PID namespace:"; readlink /proc/self/ns/pid\n   echo "PID 1:"; cat /proc/1/comm\n   echo "Cgroup controls:"; cat /sys/fs/cgroup/memory.max /sys/fs/cgroup/pids.max /sys/fs/cgroup/cpu.max\n   grep -E "CapEff|NoNewPrivs" /proc/self/status\n   if touch /should-not-write; then exit 1; fi\n   test "$(cat /sys/fs/cgroup/memory.max)" = 67108864\n   test "$(cat /sys/fs/cgroup/pids.max)" = 32\n   grep -q "^CapEff:[[:space:]]*0000000000000000$" /proc/self/status\n   grep -q "^NoNewPrivs:[[:space:]]*1$" /proc/self/status\n   test "$(cat /sys/fs/cgroup/cpu.max)" = "50000 100000"\n '
+Container PID namespace:
+pid:[4026532389]
+PID 1:
+sh
+Cgroup controls:
+67108864
+32
+50000 100000
+CapEff:	0000000000000000
+NoNewPrivs:	1
+touch: cannot touch '/should-not-write': Read-only file system
++ run.sh:211: echo 'MISSION 16 VERIFIED'
+MISSION 16 VERIFIED

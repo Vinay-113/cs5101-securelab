@@ -1,0 +1,70 @@
+2026-11-16T10:17:33+00:00
+7.0.0-43-generic
+No reboot-required marker
+  UNIT                                  LOAD   ACTIVE SUB     DESCRIPTION
+  auditd.service                        loaded active running Security Audit Logging Service
+  chrony.service                        loaded active running chrony, an NTP client/server
+  containerd.service                    loaded active running containerd container runtime
+  cron.service                          loaded active running Regular background program processing daemon
+  dbus.service                          loaded active running D-Bus System Message Bus
+  docker.service                        loaded active running Docker Application Container Engine
+  getty@tty1.service                    loaded active running Getty on tty1
+  lima-guestagent.service               loaded active running lima-guestagent
+  ModemManager.service                  loaded active running Modem Manager
+  multipathd.service                    loaded active running Device-Mapper Multipath Device Controller
+  networkd-dispatcher.service           loaded active running Dispatcher daemon for systemd-networkd
+  packagekit.service                    loaded active running PackageKit Daemon
+  polkit.service                        loaded active running Authorization Manager
+  rsyslog.service                       loaded active running System Logging Service
+  securelab-worker.service              loaded active running SECURELAB confined teaching worker
+  serial-getty@hvc0.service             loaded active running Serial Getty on hvc0
+  snapd.service                         loaded active running Snap Daemon
+  ssh.service                           loaded active running OpenBSD Secure Shell server
+  sshd@1-2-3:22-2:332828985.service     loaded active running OpenBSD Secure Shell server per-connection daemon
+  sshd@4-4098-3:22-2:3483700531.service loaded active running OpenBSD Secure Shell server per-connection daemon
+  systemd-journald.service              loaded active running Journal Service
+  systemd-logind.service                loaded active running User Login Management
+  systemd-networkd.service              loaded active running Network Management
+  systemd-resolved.service              loaded active running Network Name Resolution
+  systemd-timedated.service             loaded active running Time & Date Service
+  systemd-udevd.service                 loaded active running Rule-based Manager for Device Events and Files
+  udisks2.service                       loaded active running Disk Manager
+  unattended-upgrades.service           loaded active running Unattended Upgrades Shutdown
+  user@501.service                      loaded active running User Manager for UID 501
+
+Legend: LOAD   -> Reflects whether the unit definition was properly loaded.
+        ACTIVE -> The high-level unit activation state, i.e. generalization of SUB.
+        SUB    -> The low-level unit activation state, values depend on unit type.
+
+29 loaded units listed.
+Netid State  Recv-Q Send-Q     Local Address:Port Peer Address:PortProcess                                                 
+udp   UNCONN 0      0             127.0.0.54:53        0.0.0.0:*    users:(("systemd-resolve",pid=465,fd=21))              
+udp   UNCONN 0      0          127.0.0.53%lo:53        0.0.0.0:*    users:(("systemd-resolve",pid=465,fd=19))              
+udp   UNCONN 0      0      192.168.5.15%eth0:68        0.0.0.0:*    users:(("systemd-network",pid=813,fd=33))              
+udp   UNCONN 0      0              127.0.0.1:323       0.0.0.0:*    users:(("chronyd",pid=1022,fd=4))                      
+udp   UNCONN 0      0                0.0.0.0:5353      0.0.0.0:*    users:(("systemd-resolve",pid=465,fd=13))              
+udp   UNCONN 0      0                  [::1]:323          [::]:*    users:(("chronyd",pid=1022,fd=5))                      
+udp   UNCONN 0      0                   [::]:5353         [::]:*    users:(("systemd-resolve",pid=465,fd=14))              
+tcp   LISTEN 0      4096       127.0.0.53%lo:53        0.0.0.0:*    users:(("systemd-resolve",pid=465,fd=20))              
+tcp   LISTEN 0      4096             0.0.0.0:22        0.0.0.0:*    users:(("sshd",pid=1013,fd=3),("systemd",pid=1,fd=236))
+tcp   LISTEN 0      4096          127.0.0.54:53        0.0.0.0:*    users:(("systemd-resolve",pid=465,fd=22))              
+tcp   LISTEN 0      4096                [::]:22           [::]:*    users:(("sshd",pid=1013,fd=4),("systemd",pid=1,fd=237))
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), deny (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW IN    Anywhere                   # SECURELAB guest management SSH
+22/tcp (v6)                ALLOW IN    Anywhere (v6)              # SECURELAB guest management SSH
+
+Listing...
+distro-info/resolute-updates 1.15ubuntu0.1 arm64 [upgradable from: 1.15]
+python3-distro-info/resolute-updates 1.15ubuntu0.1 all [upgradable from: 1.15]
+python3-software-properties/resolute-updates 0.120.2 all [upgradable from: 0.120.1]
+software-properties-common/resolute-updates 0.120.2 all [upgradable from: 0.120.1]
+MemoryMax=67108864
+User=nobody
+ProtectSystem=strict
+NoNewPrivileges=yes

@@ -1,0 +1,125 @@
+UTC: 2026-11-16T10:14:26.695563+00:00
+Mission: 10
++ run.sh:2: set -euo pipefail
+++ run.sh:3: dirname /home/vinaypatil.guest/securelab/missions/run.sh
++ run.sh:3: source /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
+++ common.sh:2: set -euo pipefail
+++ common.sh:3: export LC_ALL=C
+++ common.sh:3: LC_ALL=C
+++++ common.sh:4: dirname /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
++++ common.sh:4: cd /home/vinaypatil.guest/securelab/missions/../scripts/..
++++ common.sh:4: pwd
+++ common.sh:4: ROOT=/home/vinaypatil.guest/securelab
+++ common.sh:5: : /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-10
+++ common.sh:6: mkdir -p /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-10
+++ common.sh:7: cd /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-10
+++ common.sh:8: BIN=/opt/securelab/bin
+++ common.sh:9: LAB=/opt/securelab
+++ common.sh:21: need_vm
++++ common.sh:11: uname -s
+++ common.sh:11: [[ Linux == Linux ]]
+++ common.sh:11: [[ -f /etc/securelab-vm ]]
+++ common.sh:12: sudo -n true
+++ common.sh:22: ulimit -c 0
++ run.sh:4: mission=10
++ run.sh:5: case "$mission" in
++ run.sh:64: /opt/securelab/bin/memory_protected short
+Copying 6 bytes into a 16-byte buffer...
+Buffer: short
++ run.sh:65: set +e
++ run.sh:66: /opt/securelab/bin/memory_protected
+/home/vinaypatil.guest/securelab/missions/run.sh: line 5:  2264 Aborted                    (core dumped) "$BIN/memory_protected" > protected-overflow.txt 2>&1
++ run.sh:66: rc=134
++ run.sh:67: cat protected-overflow.txt
+Copying 34 bytes into a 16-byte buffer...
+*** stack smashing detected ***: terminated
++ run.sh:67: echo 'Protected overflow exit: 134'
+Protected overflow exit: 134
++ run.sh:68: set -e
++ run.sh:69: [[ 134 -ne 0 ]]
++ run.sh:70: set +e
++ run.sh:71: ASAN_OPTIONS=detect_leaks=0
++ run.sh:71: /opt/securelab/bin/memory_asan
++ run.sh:71: rc=1
++ run.sh:72: set -e
++ run.sh:73: cat asan-overflow.txt
+Copying 34 bytes into a 16-byte buffer...
+=================================================================
+==2283==ERROR: AddressSanitizer: stack-buffer-overflow on address 0xe1d116af0030 at pc 0xe5d119144e9c bp 0xfffffeb4aff0 sp 0xfffffeb4a7d0
+WRITE of size 34 at 0xe1d116af0030 thread T0
+    #0 0xe5d119144e98 in memcpy ../../../../src/libsanitizer/sanitizer_common/sanitizer_common_interceptors_memintrinsics.inc:117
+    #1 0xc90071750fe4 in main src/memory_overflow_demo.c:9
+    #2 0xe5d118ea2f18 in __libc_start_call_main ../sysdeps/nptl/libc_start_call_main.h:59
+    #3 0xe5d118ea3058 in __libc_start_main_impl ../csu/libc-start.c:360
+    #4 0xc90071750d6c in _start (/opt/securelab/bin/memory_asan+0xd6c) (BuildId: d132faf318ef0b2146206685c62d773565554a51)
+
+Address 0xe1d116af0030 is located in stack of thread T0 at offset 48 in frame
+    #0 0xc90071750e74 in main src/memory_overflow_demo.c:4
+
+  This frame has 1 object(s):
+    [32, 48) 'buffer' (line 5) <== Memory access at offset 48 overflows this variable
+HINT: this may be a false positive if your program uses some custom stack unwind mechanism, swapcontext or vfork
+      (longjmp and C++ exceptions *are* supported)
+SUMMARY: AddressSanitizer: stack-buffer-overflow src/memory_overflow_demo.c:9 in main
+Shadow bytes around the buggy address:
+  0xe1d116aefd80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe1d116aefe00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe1d116aefe80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe1d116aeff00: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe1d116aeff80: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+=>0xe1d116af0000: f1 f1 f1 f1 00 00[f3]f3 00 00 00 00 00 00 00 00
+  0xe1d116af0080: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe1d116af0100: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe1d116af0180: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe1d116af0200: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+  0xe1d116af0280: 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00 00
+Shadow byte legend (one shadow byte represents 8 application bytes):
+  Addressable:           00
+  Partially addressable: 01 02 03 04 05 06 07 
+  Heap left redzone:       fa
+  Freed heap region:       fd
+  Stack left redzone:      f1
+  Stack mid redzone:       f2
+  Stack right redzone:     f3
+  Stack after return:      f5
+  Stack use after scope:   f8
+  Global redzone:          f9
+  Global init order:       f6
+  Poisoned by user:        f7
+  Container overflow:      fc
+  Array cookie:            ac
+  Intra object redzone:    bb
+  ASan internal:           fe
+  Left alloca redzone:     ca
+  Right alloca redzone:    cb
+==2283==ABORTING
++ run.sh:73: echo 'ASan overflow exit: 1'
+ASan overflow exit: 1
++ run.sh:74: [[ 1 -ne 0 ]]
++ run.sh:74: grep -q stack-buffer-overflow asan-overflow.txt
++ run.sh:75: allow /opt/securelab/bin/bounded_copy short
++ common.sh:14: /opt/securelab/bin/bounded_copy short
+Accepted: short
++ common.sh:14: printf 'VERIFIED ALLOWED: '
+VERIFIED ALLOWED: + common.sh:14: printf '%q ' /opt/securelab/bin/bounded_copy short
+/opt/securelab/bin/bounded_copy short + common.sh:14: printf '\n'
+
++ run.sh:76: allow /opt/securelab/bin/bounded_copy 123456789012345
++ common.sh:14: /opt/securelab/bin/bounded_copy 123456789012345
+Accepted: 123456789012345
++ common.sh:14: printf 'VERIFIED ALLOWED: '
+VERIFIED ALLOWED: + common.sh:14: printf '%q ' /opt/securelab/bin/bounded_copy 123456789012345
+/opt/securelab/bin/bounded_copy 123456789012345 + common.sh:14: printf '\n'
+
++ run.sh:77: deny /opt/securelab/bin/bounded_copy 1234567890123456
++ common.sh:16: local rc=0
++ common.sh:17: /opt/securelab/bin/bounded_copy 1234567890123456
+Rejected: input plus terminator exceeds 16 bytes
++ common.sh:17: rc=1
++ common.sh:18: [[ 1 -ne 0 ]]
++ common.sh:19: printf 'VERIFIED DENIED (exit %s): ' 1
+VERIFIED DENIED (exit 1): + common.sh:19: printf '%q ' /opt/securelab/bin/bounded_copy 1234567890123456
+/opt/securelab/bin/bounded_copy 1234567890123456 + common.sh:19: printf '\n'
+
++ run.sh:211: echo 'MISSION 10 VERIFIED'
+MISSION 10 VERIFIED

@@ -1,0 +1,23 @@
+.tools/
+.vm/
+.cache/
+bin/
+tmp/
+__pycache__/
+*.pyc
+output/*.zip
+.vm-recovery/
+
+# Local metadata and credentials
+.DS_Store
+._*
+.env
+.env.*
+!.env.example
+*.pem
+*.key
+id_rsa
+id_ed25519
+
+# Include the ready-to-submit archive requested for the repository.
+!output/securelab-submission.zip

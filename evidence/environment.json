@@ -1,0 +1,16 @@
+{
+  "captured_utc": "2026-11-16T10:24:15.856419+00:00",
+  "host_system": "Darwin",
+  "host_release": "25.5.0",
+  "host_architecture": "arm64",
+  "vm_manager": "limactl version 2.3.0",
+  "requested_guest": "Ubuntu 26.04 LTS ARM64 headless server cloud image",
+  "vm_config": "vm/securelab.yaml",
+  "vm_config_sha256": "9fd75aa6d1e0748a3ce78e55c90e86ed4febbf659ddd0e860d3b8c56bb778298",
+  "clean_recovery_copy_exists": true,
+  "clean_recovery_copy_logical_bytes": 42949672960,
+  "recovery_mechanism": "APFS clone of the stopped VZ guest disk; not Lima QEMU snapshot API",
+  "host_mounts": [],
+  "container_published_ports": [],
+  "extra_guest_port_forwarding": "disabled; managed SSH uses Lima loopback transport"
+}

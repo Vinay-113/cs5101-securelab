@@ -1,0 +1,1 @@
+uid=501(vinaypatil) gid=1000(vinaypatil) groups=1000(vinaypatil),999(systemd-journal)

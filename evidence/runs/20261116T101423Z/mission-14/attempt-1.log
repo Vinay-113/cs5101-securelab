@@ -1,0 +1,97 @@
+UTC: 2026-11-16T10:14:28.192185+00:00
+Mission: 14
++ run.sh:2: set -euo pipefail
+++ run.sh:3: dirname /home/vinaypatil.guest/securelab/missions/run.sh
++ run.sh:3: source /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
+++ common.sh:2: set -euo pipefail
+++ common.sh:3: export LC_ALL=C
+++ common.sh:3: LC_ALL=C
+++++ common.sh:4: dirname /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
++++ common.sh:4: cd /home/vinaypatil.guest/securelab/missions/../scripts/..
++++ common.sh:4: pwd
+++ common.sh:4: ROOT=/home/vinaypatil.guest/securelab
+++ common.sh:5: : /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-14
+++ common.sh:6: mkdir -p /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-14
+++ common.sh:7: cd /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-14
+++ common.sh:8: BIN=/opt/securelab/bin
+++ common.sh:9: LAB=/opt/securelab
+++ common.sh:21: need_vm
++++ common.sh:11: uname -s
+++ common.sh:11: [[ Linux == Linux ]]
+++ common.sh:11: [[ -f /etc/securelab-vm ]]
+++ common.sh:12: sudo -n true
+++ common.sh:22: ulimit -c 0
++ run.sh:4: mission=14
++ run.sh:5: case "$mission" in
+++ run.sh:106: date --iso-8601=seconds
++ run.sh:106: start=2026-11-16T15:44:28+05:30
++ run.sh:107: tag=securelab-20261116T101423Z
++ run.sh:108: logger -t securelab-20261116T101423Z -- 'synthetic lab session started'
++ run.sh:109: id
++ run.sh:110: logger -t securelab-20261116T101423Z -- 'identity baseline captured'
++ run.sh:111: printf 'Approved configuration\n'
++ run.sh:112: logger -t securelab-20261116T101423Z -- 'synthetic file created'
++ run.sh:113: chmod 0600 timeline-demo.txt
++ run.sh:113: stat -c '%a %n' timeline-demo.txt
+600 timeline-demo.txt
++ run.sh:114: logger -t securelab-20261116T101423Z -- 'file permissions restricted to 0600'
++ run.sh:115: sha256sum timeline-demo.txt
++ run.sh:116: logger -t securelab-20261116T101423Z -- 'SHA256 baseline captured'
++ run.sh:117: printf 'Controlled drift\n'
++ run.sh:118: logger -t securelab-20261116T101423Z -- 'controlled content change applied'
++ run.sh:119: deny sha256sum -c timeline-demo.sha256
++ common.sh:16: local rc=0
++ common.sh:17: sha256sum -c timeline-demo.sha256
+timeline-demo.txt: FAILED
+sha256sum: WARNING: 1 computed checksum did NOT match
++ common.sh:17: rc=1
++ common.sh:18: [[ 1 -ne 0 ]]
++ common.sh:19: printf 'VERIFIED DENIED (exit %s): ' 1
+VERIFIED DENIED (exit 1): + common.sh:19: printf '%q ' sha256sum -c timeline-demo.sha256
+sha256sum -c timeline-demo.sha256 + common.sh:19: printf '\n'
+
++ run.sh:120: logger -t securelab-20261116T101423Z -- 'hash mismatch detected'
++ run.sh:121: printf 'Approved configuration\n'
++ run.sh:122: allow sha256sum -c timeline-demo.sha256
++ common.sh:14: sha256sum -c timeline-demo.sha256
+timeline-demo.txt: OK
++ common.sh:14: printf 'VERIFIED ALLOWED: '
+VERIFIED ALLOWED: + common.sh:14: printf '%q ' sha256sum -c timeline-demo.sha256
+sha256sum -c timeline-demo.sha256 + common.sh:14: printf '\n'
+
++ run.sh:123: logger -t securelab-20261116T101423Z -- 'approved bytes restored and verification passed'
++ run.sh:124: sudo journalctl --sync
++ run.sh:125: sudo journalctl -t securelab-20261116T101423Z --since 2026-11-16T15:44:28+05:30 --no-pager -o short-iso-precise
++ run.sh:125: tee timeline.txt
+2026-11-16T15:44:28.200604+05:30 lima-securelab securelab-20261116T101423Z[2525]: synthetic lab session started
+2026-11-16T15:44:28.201984+05:30 lima-securelab securelab-20261116T101423Z[2527]: identity baseline captured
+2026-11-16T15:44:28.202459+05:30 lima-securelab securelab-20261116T101423Z[2528]: synthetic file created
+2026-11-16T15:44:28.204532+05:30 lima-securelab securelab-20261116T101423Z[2531]: file permissions restricted to 0600
+2026-11-16T15:44:28.205771+05:30 lima-securelab securelab-20261116T101423Z[2533]: SHA256 baseline captured
+2026-11-16T15:44:28.206189+05:30 lima-securelab securelab-20261116T101423Z[2534]: controlled content change applied
+2026-11-16T15:44:28.207417+05:30 lima-securelab securelab-20261116T101423Z[2536]: hash mismatch detected
+2026-11-16T15:44:28.208646+05:30 lima-securelab securelab-20261116T101423Z[2538]: approved bytes restored and verification passed
+++ run.sh:126: grep -c securelab-20261116T101423Z timeline.txt
++ run.sh:126: [[ 8 -eq 8 ]]
++ run.sh:127: sudo journalctl -u ssh -n 15 --no-pager
+Nov 16 15:21:18 lima-securelab systemd[1]: ssh.service: Deactivated successfully.
+Nov 16 15:21:18 lima-securelab systemd[1]: Stopped ssh.service - OpenBSD Secure Shell server.
+Nov 16 15:21:18 lima-securelab systemd[1]: Starting ssh.service - OpenBSD Secure Shell server...
+Nov 16 15:21:18 lima-securelab sshd[29891]: Server listening on 0.0.0.0 port 22.
+Nov 16 15:21:18 lima-securelab sshd[29891]: Server listening on :: port 22.
+Nov 16 15:21:18 lima-securelab systemd[1]: Started ssh.service - OpenBSD Secure Shell server.
+Nov 16 15:43:33 lima-securelab sshd[29891]: Received signal 15; terminating.
+Nov 16 15:43:33 lima-securelab systemd[1]: Stopping ssh.service - OpenBSD Secure Shell server...
+Nov 16 15:43:34 lima-securelab systemd[1]: ssh.service: Deactivated successfully.
+Nov 16 15:43:34 lima-securelab systemd[1]: Stopped ssh.service - OpenBSD Secure Shell server.
+-- Boot 48fef233aaed483cad5e2bbf8623654d --
+Nov 16 15:43:50 lima-securelab systemd[1]: Starting ssh.service - OpenBSD Secure Shell server...
+Nov 16 15:43:50 lima-securelab sshd[931]: Server listening on 0.0.0.0 port 22.
+Nov 16 15:43:50 lima-securelab systemd[1]: Started ssh.service - OpenBSD Secure Shell server.
+Nov 16 15:43:50 lima-securelab sshd[931]: Server listening on :: port 22.
+Nov 16 15:43:51 lima-securelab sshd-session[1222]: Connection closed by 192.168.5.2 port 38030
++ run.sh:128: last -n 10
+/home/vinaypatil.guest/securelab/missions/run.sh: line 128: last: command not found
++ run.sh:128: true
++ run.sh:211: echo 'MISSION 14 VERIFIED'
+MISSION 14 VERIFIED

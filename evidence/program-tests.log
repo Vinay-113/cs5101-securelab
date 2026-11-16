@@ -1,0 +1,14 @@
+python3 tests/test_programs.py
+test_asan_detects_overflow (__main__.Programs.test_asan_detects_overflow) ... ok
+test_bounded_copy_boundary (__main__.Programs.test_bounded_copy_boundary) ... ok
+test_inspector_rejects_invalid_pid (__main__.Programs.test_inspector_rejects_invalid_pid) ... ok
+test_mutex_repeated (__main__.Programs.test_mutex_repeated) ... ok
+test_pipe_message (__main__.Programs.test_pipe_message) ... ok
+test_protected_short_input (__main__.Programs.test_protected_short_input) ... ok
+test_shared_message (__main__.Programs.test_shared_message) ... ok
+test_syscall_file_and_symlink (__main__.Programs.test_syscall_file_and_symlink) ... ok
+
+----------------------------------------------------------------------
+Ran 8 tests in 0.362s
+
+OK

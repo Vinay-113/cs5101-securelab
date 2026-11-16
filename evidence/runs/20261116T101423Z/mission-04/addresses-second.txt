@@ -1,0 +1,4 @@
+PID = 2108
+&secret = 0xffffc6fb2d64
+secret = 12345
+Inspect this process's maps for 30 seconds.

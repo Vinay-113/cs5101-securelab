@@ -1,0 +1,72 @@
+UTC: 2026-11-16T10:14:28.027288+00:00
+Mission: 11
++ run.sh:2: set -euo pipefail
+++ run.sh:3: dirname /home/vinaypatil.guest/securelab/missions/run.sh
++ run.sh:3: source /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
+++ common.sh:2: set -euo pipefail
+++ common.sh:3: export LC_ALL=C
+++ common.sh:3: LC_ALL=C
+++++ common.sh:4: dirname /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
++++ common.sh:4: cd /home/vinaypatil.guest/securelab/missions/../scripts/..
++++ common.sh:4: pwd
+++ common.sh:4: ROOT=/home/vinaypatil.guest/securelab
+++ common.sh:5: : /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-11
+++ common.sh:6: mkdir -p /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-11
+++ common.sh:7: cd /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-11
+++ common.sh:8: BIN=/opt/securelab/bin
+++ common.sh:9: LAB=/opt/securelab
+++ common.sh:21: need_vm
++++ common.sh:11: uname -s
+++ common.sh:11: [[ Linux == Linux ]]
+++ common.sh:11: [[ -f /etc/securelab-vm ]]
+++ common.sh:12: sudo -n true
+++ common.sh:22: ulimit -c 0
++ run.sh:4: mission=11
++ run.sh:5: case "$mission" in
++ run.sh:80: checksec --file=/opt/securelab/bin/memory_protected
+RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH	Symbols		FORTIFY	Fortified	Fortifiable	FILE
+[32mFull RELRO   [m   [32mCanary found   [m   [32mNX enabled [m   [32mPIE enabled  [m   [32mNo RPATH [m  [32mNo RUNPATH [m  [31m102 Symbols	[m  [31mNo[m	0		2		/opt/securelab/bin/memory_protected
++ run.sh:81: checksec --file=/opt/securelab/bin/memory_unprotected
+RELRO           STACK CANARY      NX            PIE             RPATH      RUNPATH	Symbols		FORTIFY	Fortified	Fortifiable	FILE
+[33mPartial RELRO[m   [31mNo canary found[m   [32mNX enabled [m   [31mNo PIE       [m   [32mNo RPATH [m  [32mNo RUNPATH [m  [31m104 Symbols	[m  [31mNo[m	0		2		/opt/securelab/bin/memory_unprotected
++ run.sh:82: cat /proc/sys/kernel/randomize_va_space
+2
++ run.sh:83: readelf -W -l /opt/securelab/bin/memory_protected
++ run.sh:84: cat protected-headers.txt
+
+Elf file type is DYN (Position-Independent Executable file)
+Entry point 0x8c0
+There are 10 program headers, starting at offset 64
+
+Program Headers:
+  Type           Offset   VirtAddr           PhysAddr           FileSiz  MemSiz   Flg Align
+  PHDR           0x000040 0x0000000000000040 0x0000000000000040 0x000230 0x000230 R   0x8
+  INTERP         0x000294 0x0000000000000294 0x0000000000000294 0x00001b 0x00001b R   0x1
+      [Requesting program interpreter: /lib/ld-linux-aarch64.so.1]
+  LOAD           0x000000 0x0000000000000000 0x0000000000000000 0x000c8c 0x000c8c R E 0x10000
+  LOAD           0x00fd48 0x000000000001fd48 0x000000000001fd48 0x0002c8 0x0002d0 RW  0x10000
+  DYNAMIC        0x00fd58 0x000000000001fd58 0x000000000001fd58 0x000200 0x000200 RW  0x8
+  NOTE           0x000270 0x0000000000000270 0x0000000000000270 0x000024 0x000024 R   0x4
+  NOTE           0x000c6c 0x0000000000000c6c 0x0000000000000c6c 0x000020 0x000020 R   0x4
+  GNU_EH_FRAME   0x000b7c 0x0000000000000b7c 0x0000000000000b7c 0x00003c 0x00003c R   0x4
+  GNU_STACK      0x000000 0x0000000000000000 0x0000000000000000 0x000000 0x000000 RW  0x10
+  GNU_RELRO      0x00fd48 0x000000000001fd48 0x000000000001fd48 0x0002b8 0x0002b8 R   0x1
+
+ Section to Segment mapping:
+  Segment Sections...
+   00     
+   01     .interp 
+   02     .note.gnu.build-id .interp .gnu.hash .dynsym .dynstr .gnu.version .gnu.version_r .rela.dyn .rela.plt .init .plt .text .fini .rodata .eh_frame_hdr .eh_frame .note.ABI-tag 
+   03     .init_array .fini_array .dynamic .got .data .bss 
+   04     .dynamic 
+   05     .note.gnu.build-id 
+   06     .note.ABI-tag 
+   07     .eh_frame_hdr 
+   08     
+   09     .init_array .fini_array .dynamic .got 
++ run.sh:85: grep __stack_chk_fail
++ run.sh:85: readelf -Ws /opt/securelab/bin/memory_protected
+     9: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail@GLIBC_2.17 (2)
+    85: 0000000000000000     0 FUNC    GLOBAL DEFAULT  UND __stack_chk_fail@GLIBC_2.17
++ run.sh:211: echo 'MISSION 11 VERIFIED'
+MISSION 11 VERIFIED

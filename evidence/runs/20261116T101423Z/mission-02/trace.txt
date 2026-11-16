@@ -1,0 +1,8 @@
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/aarch64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+close(3)                                = 0
+openat(AT_FDCWD, "hello.txt", O_WRONLY|O_CREAT|O_TRUNC|O_NOFOLLOW, 0644) = 3
+write(3, "Hello from user space!\n", 23) = 23
+close(3)                                = 0
++++ exited with 0 +++

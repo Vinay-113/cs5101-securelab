@@ -1,0 +1,18 @@
+c26e94480000-c26e94481000 r-xp 00000000 fd:01 840028                     /opt/securelab/bin/address_space
+c26e9449f000-c26e944a0000 r--p 0000f000 fd:01 840028                     /opt/securelab/bin/address_space
+c26e944a0000-c26e944a1000 rw-p 00010000 fd:01 840028                     /opt/securelab/bin/address_space
+c26e99166000-c26e99200000 rw-p 00000000 00:00 0                          [heap]
+eb8abc010000-eb8abc1b9000 r-xp 00000000 fd:01 3088                       /usr/lib/aarch64-linux-gnu/libc.so.6
+eb8abc1b9000-eb8abc1cd000 ---p 001a9000 fd:01 3088                       /usr/lib/aarch64-linux-gnu/libc.so.6
+eb8abc1cd000-eb8abc1d0000 r--p 001ad000 fd:01 3088                       /usr/lib/aarch64-linux-gnu/libc.so.6
+eb8abc1d0000-eb8abc1d2000 rw-p 001b0000 fd:01 3088                       /usr/lib/aarch64-linux-gnu/libc.so.6
+eb8abc1d2000-eb8abc1de000 rw-p 00000000 00:00 0 
+eb8abc1ee000-eb8abc218000 r-xp 00000000 fd:01 3085                       /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
+eb8abc21b000-eb8abc21d000 rw-p 00000000 00:00 0 
+eb8abc224000-eb8abc226000 rw-p 00000000 00:00 0 
+eb8abc226000-eb8abc22a000 r--p 00000000 00:00 0                          [vvar]
+eb8abc22a000-eb8abc22c000 r-xp 00000000 00:00 0                          [vdso]
+eb8abc22c000-eb8abc22e000 r--p 0002e000 fd:01 3085                       /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
+eb8abc22e000-eb8abc22f000 rw-p 00030000 fd:01 3085                       /usr/lib/aarch64-linux-gnu/ld-linux-aarch64.so.1
+eb8abc22f000-eb8abc230000 rw-p 00000000 00:00 0 
+fffffcd32000-fffffcd53000 rw-p 00000000 00:00 0                          [stack]

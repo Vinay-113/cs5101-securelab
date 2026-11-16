@@ -1,0 +1,22 @@
+apple
+cgroups=2
+26.04: Pulling from library/ubuntu
+cedc468d06b2: Pulling fs layer
+7f2c2ca81066: Pulling fs layer
+cedc468d06b2: Download complete
+9d297c90b98f: Download complete
+7f2c2ca81066: Download complete
+cedc468d06b2: Pull complete
+7f2c2ca81066: Pull complete
+Digest: sha256:d66b366dac61b575bee2aef07e9c26e8070096fbe84a3d4d3eb0da069b5d76db
+Status: Downloaded newer image for ubuntu:26.04
+docker.io/library/ubuntu:26.04
+Using default tag: latest
+latest: Pulling from library/hello-world
+58dee6a49ef1: Pulling fs layer
+58dee6a49ef1: Download complete
+58dee6a49ef1: Pull complete
+c3bdf82c34d1: Download complete
+Digest: sha256:cf1b20a0c89a666b6950fecda7ccbc1b1a86520e7c53f908f3a21e79d0d60458
+Status: Downloaded newer image for hello-world:latest
+docker.io/library/hello-world:latest

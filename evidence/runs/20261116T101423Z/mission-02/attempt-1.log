@@ -1,0 +1,41 @@
+UTC: 2026-11-16T10:14:24.232526+00:00
+Mission: 02
++ run.sh:2: set -euo pipefail
+++ run.sh:3: dirname /home/vinaypatil.guest/securelab/missions/run.sh
++ run.sh:3: source /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
+++ common.sh:2: set -euo pipefail
+++ common.sh:3: export LC_ALL=C
+++ common.sh:3: LC_ALL=C
+++++ common.sh:4: dirname /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
++++ common.sh:4: cd /home/vinaypatil.guest/securelab/missions/../scripts/..
++++ common.sh:4: pwd
+++ common.sh:4: ROOT=/home/vinaypatil.guest/securelab
+++ common.sh:5: : /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-02
+++ common.sh:6: mkdir -p /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-02
+++ common.sh:7: cd /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-02
+++ common.sh:8: BIN=/opt/securelab/bin
+++ common.sh:9: LAB=/opt/securelab
+++ common.sh:21: need_vm
++++ common.sh:11: uname -s
+++ common.sh:11: [[ Linux == Linux ]]
+++ common.sh:11: [[ -f /etc/securelab-vm ]]
+++ common.sh:12: sudo -n true
+++ common.sh:22: ulimit -c 0
++ run.sh:4: mission=02
++ run.sh:5: case "$mission" in
++ run.sh:10: strace -o trace.txt -e trace=open,openat,write,close /opt/securelab/bin/syscall_demo
++ run.sh:11: cat trace.txt
+openat(AT_FDCWD, "/etc/ld.so.cache", O_RDONLY|O_CLOEXEC) = 3
+close(3)                                = 0
+openat(AT_FDCWD, "/usr/lib/aarch64-linux-gnu/libc.so.6", O_RDONLY|O_CLOEXEC) = 3
+close(3)                                = 0
+openat(AT_FDCWD, "hello.txt", O_WRONLY|O_CREAT|O_TRUNC|O_NOFOLLOW, 0644) = 3
+write(3, "Hello from user space!\n", 23) = 23
+close(3)                                = 0
++++ exited with 0 +++
++ run.sh:11: cat hello.txt
+Hello from user space!
+++ run.sh:12: cat hello.txt
++ run.sh:12: test 'Hello from user space!' = 'Hello from user space!'
++ run.sh:211: echo 'MISSION 02 VERIFIED'
+MISSION 02 VERIFIED

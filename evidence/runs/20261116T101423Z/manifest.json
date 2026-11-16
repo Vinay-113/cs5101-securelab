@@ -1,0 +1,241 @@
+{
+  "run_id": "20261116T101423Z",
+  "started_utc": "2026-11-16T10:14:23.874326+00:00",
+  "platform": "Linux-7.0.0-43-generic-aarch64-with-glibc2.43",
+  "python": "3.14.4 (main, Aug 20 2026, 10:41:58) [GCC 15.2.0]",
+  "missions": {
+    "01": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:24.216562+00:00",
+      "ended_utc": "2026-11-16T10:14:24.232346+00:00",
+      "log": "mission-01/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "02": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:24.232526+00:00",
+      "ended_utc": "2026-11-16T10:14:24.248344+00:00",
+      "log": "mission-02/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "03": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:24.248538+00:00",
+      "ended_utc": "2026-11-16T10:14:24.264278+00:00",
+      "log": "mission-03/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "04": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:24.264511+00:00",
+      "ended_utc": "2026-11-16T10:14:26.300209+00:00",
+      "log": "mission-04/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "05": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:26.300948+00:00",
+      "ended_utc": "2026-11-16T10:14:26.518404+00:00",
+      "log": "mission-05/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "06": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:26.518706+00:00",
+      "ended_utc": "2026-11-16T10:14:26.534403+00:00",
+      "log": "mission-06/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "07": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:26.534621+00:00",
+      "ended_utc": "2026-11-16T10:14:26.598969+00:00",
+      "log": "mission-07/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "08": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:26.599214+00:00",
+      "ended_utc": "2026-11-16T10:14:26.663142+00:00",
+      "log": "mission-08/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "09": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:26.663365+00:00",
+      "ended_utc": "2026-11-16T10:14:26.695294+00:00",
+      "log": "mission-09/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "10": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:26.695563+00:00",
+      "ended_utc": "2026-11-16T10:14:28.026922+00:00",
+      "log": "mission-10/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "11": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:28.027288+00:00",
+      "ended_utc": "2026-11-16T10:14:28.143587+00:00",
+      "log": "mission-11/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "12": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:17:30.618993+00:00",
+      "ended_utc": "2026-11-16T10:17:30.685553+00:00",
+      "log": "mission-12/attempt-2.log",
+      "attempt": 2,
+      "source_set_sha256": "4edcf361bfa09b75f173e5f909bddca4295ec2ac524af4877cd831e589d9ee96"
+    },
+    "13": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:28.176135+00:00",
+      "ended_utc": "2026-11-16T10:14:28.191956+00:00",
+      "log": "mission-13/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "14": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:28.192185+00:00",
+      "ended_utc": "2026-11-16T10:14:28.257916+00:00",
+      "log": "mission-14/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "15": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:28.258183+00:00",
+      "ended_utc": "2026-11-16T10:14:28.290051+00:00",
+      "log": "mission-15/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "16": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:14:28.290343+00:00",
+      "ended_utc": "2026-11-16T10:15:12.090291+00:00",
+      "log": "mission-16/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "17": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:15:12.091453+00:00",
+      "ended_utc": "2026-11-16T10:15:12.156105+00:00",
+      "log": "mission-17/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "18": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:17:30.685823+00:00",
+      "ended_utc": "2026-11-16T10:17:30.701897+00:00",
+      "log": "mission-18/attempt-2.log",
+      "attempt": 2,
+      "source_set_sha256": "4edcf361bfa09b75f173e5f909bddca4295ec2ac524af4877cd831e589d9ee96"
+    },
+    "19": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:17:30.702107+00:00",
+      "ended_utc": "2026-11-16T10:17:34.169523+00:00",
+      "log": "mission-19/attempt-2.log",
+      "attempt": 2,
+      "source_set_sha256": "4edcf361bfa09b75f173e5f909bddca4295ec2ac524af4877cd831e589d9ee96"
+    },
+    "20": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:15:14.627534+00:00",
+      "ended_utc": "2026-11-16T10:15:15.992900+00:00",
+      "log": "mission-20/attempt-1.log",
+      "attempt": 1,
+      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+    },
+    "21": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:23:55.387774+00:00",
+      "ended_utc": "2026-11-16T10:23:55.403929+00:00",
+      "log": "mission-21/attempt-3.log",
+      "attempt": 3,
+      "source_set_sha256": "9b99ace09129aa65236b3b0ca7a62245391f270aa7105a8be1cd77a545388dea"
+    },
+    "22": {
+      "status": "verified",
+      "exit_code": 0,
+      "started_utc": "2026-11-16T10:17:34.169774+00:00",
+      "ended_utc": "2026-11-16T10:17:35.465249+00:00",
+      "log": "mission-22/attempt-2.log",
+      "attempt": 2,
+      "source_set_sha256": "4edcf361bfa09b75f173e5f909bddca4295ec2ac524af4877cd831e589d9ee96"
+    }
+  },
+  "scope": "Ubuntu ARM64 headless VM; M22 is a locally supplied practice challenge",
+  "source_sha256": {
+    "Makefile": "25daf0cc10a194ba8911ced50eadeccd975ab5256dbc68f0a1f0fedbeaf9048c",
+    "src/confinement_probe.c": "6c1f14b86556f287a031575d2944c74e583b300cb0477aa5d87592452eec6e13",
+    "src/syscall_demo.c": "0995616aeec6d8e083ee1a1a3fbcce60ce171bbd54548273d5ee695c9dcb6d74",
+    "src/race_demo.c": "b24cdc184648e11cf052e6fe548acf6651ac992564794824bfb33ddddc82c65b",
+    "src/address_space.c": "7cdf3ae1649e18f6b16807ed10391ae72b3e4e2e650ee1903658fe317b9a9a3f",
+    "src/pipe_ipc.c": "a81e358a4fcf64d6f37fc9824da608c48e87eefb334dd7c4e1bc0e95fb09f709",
+    "src/identity.c": "f40020cc428be12ef3af91accde2ffd5e93f054ec4e30d648ea3ef9a2656883d",
+    "src/shared_ipc.c": "45e86fd644150a1a2b937ab8b5cc56cc45712ba8322ad55b76c860b18ec46a9c",
+    "src/memory_overflow_demo.c": "6aa09edf9d81790460dd68224e11ea2f180b510f27d317df783689a906c35bbb",
+    "src/bounded_copy.c": "5ddb10cf52298672cba5308986fbf082dd08797764b6e049b7eee572758b3c6e",
+    "scripts/hardening.sh": "18f7aa69a73d189c5305fb2fef7c9ca4e0003ae42127a66638b13ecc2df3a7b5",
+    "scripts/common.sh": "1c82d00b461fad06d9da2224bdcfd10e942972b1814b80ee49f4a8a900d07dce",
+    "scripts/setup_guest.sh": "7fc3be9f6ae35027f877ca8bfca8c40356081b23fd43dec44b4df5a36cd7824b",
+    "scripts/verify_delivery.py": "499abd44289b3436a53bf48f7bf0eabfc0e35020ec9654c6f49f4c158b1d3354",
+    "scripts/vm.sh": "12cd78903257bb96d6880b2a56503bf400cbc6d912a4c6fc83e9533102d3fc45",
+    "scripts/capture_environment.py": "08e065739e9fdd5b81448bad8d597f4bd38fa337d7596f483c7d63a48718c3bd",
+    "scripts/package_submission.py": "b14309d1b1103baa3760b7d79e7fb8b344c46eb8d32cef897536b720b4437649",
+    "scripts/run_lab.py": "41b3dd9b33d4f8e98e7387411861ac2b54de02a1f8026afbaf9d1f5054901f98",
+    "scripts/build_report.py": "5a66790b9b2829d7280d9d490d699b0aae618395e793179d84699e808527f54b",
+    "scripts/local_ssh.sh": "0b78fc7d656121c6eb1759f232dea0cd29583b8a5856efe7de4b88fc65d116eb",
+    "scripts/build_notes.py": "1937d5d0377103c8b1526a5a5d4d1485ece0ef407ef86be6a91f578987187d91",
+    "scripts/rollback_hardening.sh": "66e0f8121139df2c11ed7d110d9af58ca6e2deb8ef8ece78528cd50be309e177",
+    "scripts/proc_inspector.sh": "fc6202f6b9539c6926f42b29cc9709fc34019a659cfdfc41e41ca9afcb89941a",
+    "scripts/practice_challenge.sh": "22ddd8f3a21dff99385efeae8bde64ed7acfb04583bf75c9b83a3881a103a9d5",
+    "scripts/install_docker.sh": "1bbcb0637c71d4a144e4d9287da0f22128ec534769e103a08a1fc4f1f496ef51",
+    "scripts/install_host.sh": "d95682c31b587bee45833c083ebd50a77fc2d89c20cd90b561f4341e2d732e40",
+    "missions/run.sh": "09e398e9cd5388b35d4ef218320f34e9b0d94cf5e4b1d1058f7529cce3b91635",
+    "tests/test_programs.py": "9ac947b1db321c3da26db86dafb1f6170df653ae7e6f65993d05081dbfabd773",
+    "vm/securelab.yaml": "9fd75aa6d1e0748a3ce78e55c90e86ed4febbf659ddd0e860d3b8c56bb778298",
+    "vm/Dockerfile": "54155d27385bdea0c3fcfb7460d11419da52d361f461c04ec22c2cb8f4a8f488"
+  },
+  "finished_utc": "2026-11-16T10:23:55.404097+00:00",
+  "verified_count": 22
+}

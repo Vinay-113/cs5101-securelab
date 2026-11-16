@@ -1,0 +1,8 @@
+2026-11-16T15:44:28.200604+05:30 lima-securelab securelab-20261116T101423Z[2525]: synthetic lab session started
+2026-11-16T15:44:28.201984+05:30 lima-securelab securelab-20261116T101423Z[2527]: identity baseline captured
+2026-11-16T15:44:28.202459+05:30 lima-securelab securelab-20261116T101423Z[2528]: synthetic file created
+2026-11-16T15:44:28.204532+05:30 lima-securelab securelab-20261116T101423Z[2531]: file permissions restricted to 0600
+2026-11-16T15:44:28.205771+05:30 lima-securelab securelab-20261116T101423Z[2533]: SHA256 baseline captured
+2026-11-16T15:44:28.206189+05:30 lima-securelab securelab-20261116T101423Z[2534]: controlled content change applied
+2026-11-16T15:44:28.207417+05:30 lima-securelab securelab-20261116T101423Z[2536]: hash mismatch detected
+2026-11-16T15:44:28.208646+05:30 lima-securelab securelab-20261116T101423Z[2538]: approved bytes restored and verification passed

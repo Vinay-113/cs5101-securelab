@@ -1,0 +1,5 @@
+[Unit]
+Description=SECURELAB teaching worker
+[Service]
+Type=exec
+ExecStart=/usr/bin/sleep infinity
