@@ -142,11 +142,11 @@
     "16": {
       "status": "verified",
       "exit_code": 0,
-      "started_utc": "2026-11-16T10:14:28.290343+00:00",
-      "ended_utc": "2026-11-16T10:15:12.090291+00:00",
-      "log": "mission-16/attempt-1.log",
-      "attempt": 1,
-      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+      "started_utc": "2026-11-16T13:26:29.159669+00:00",
+      "ended_utc": "2026-11-16T13:26:30.179468+00:00",
+      "log": "mission-16/attempt-2.log",
+      "attempt": 2,
+      "source_set_sha256": "4a24c781fd263287d6719332d0074de41a8a789f34eca97286078b4e001cbd17"
     },
     "17": {
       "status": "verified",
@@ -169,29 +169,29 @@
     "19": {
       "status": "verified",
       "exit_code": 0,
-      "started_utc": "2026-11-16T10:17:30.702107+00:00",
-      "ended_utc": "2026-11-16T10:17:34.169523+00:00",
-      "log": "mission-19/attempt-2.log",
-      "attempt": 2,
-      "source_set_sha256": "4edcf361bfa09b75f173e5f909bddca4295ec2ac524af4877cd831e589d9ee96"
+      "started_utc": "2026-11-16T13:25:10.437406+00:00",
+      "ended_utc": "2026-11-16T13:25:14.860366+00:00",
+      "log": "mission-19/attempt-3.log",
+      "attempt": 3,
+      "source_set_sha256": "4a24c781fd263287d6719332d0074de41a8a789f34eca97286078b4e001cbd17"
     },
     "20": {
       "status": "verified",
       "exit_code": 0,
-      "started_utc": "2026-11-16T10:15:14.627534+00:00",
-      "ended_utc": "2026-11-16T10:15:15.992900+00:00",
-      "log": "mission-20/attempt-1.log",
-      "attempt": 1,
-      "source_set_sha256": "30518589b54f18cad7c10194d2c7b2efe707a3b835e7a28012ccd74aa80b78ce"
+      "started_utc": "2026-11-16T13:25:14.860814+00:00",
+      "ended_utc": "2026-11-16T13:25:16.236090+00:00",
+      "log": "mission-20/attempt-2.log",
+      "attempt": 2,
+      "source_set_sha256": "4a24c781fd263287d6719332d0074de41a8a789f34eca97286078b4e001cbd17"
     },
     "21": {
       "status": "verified",
       "exit_code": 0,
-      "started_utc": "2026-11-16T10:23:55.387774+00:00",
-      "ended_utc": "2026-11-16T10:23:55.403929+00:00",
-      "log": "mission-21/attempt-3.log",
-      "attempt": 3,
-      "source_set_sha256": "9b99ace09129aa65236b3b0ca7a62245391f270aa7105a8be1cd77a545388dea"
+      "started_utc": "2026-11-16T13:30:14.560021+00:00",
+      "ended_utc": "2026-11-16T13:30:14.575934+00:00",
+      "log": "mission-21/attempt-4.log",
+      "attempt": 4,
+      "source_set_sha256": "0a0e86d9b00cd53fc4f96b8f20b4fa914c1c51788cd60033a0eb9b7ec051d27a"
     },
     "22": {
       "status": "verified",
@@ -215,17 +215,17 @@
     "src/shared_ipc.c": "45e86fd644150a1a2b937ab8b5cc56cc45712ba8322ad55b76c860b18ec46a9c",
     "src/memory_overflow_demo.c": "6aa09edf9d81790460dd68224e11ea2f180b510f27d317df783689a906c35bbb",
     "src/bounded_copy.c": "5ddb10cf52298672cba5308986fbf082dd08797764b6e049b7eee572758b3c6e",
-    "scripts/hardening.sh": "18f7aa69a73d189c5305fb2fef7c9ca4e0003ae42127a66638b13ecc2df3a7b5",
+    "scripts/hardening.sh": "15e2b2415f47acc9c9eee19725cd21b7a7a7320da9925458005944187e09cdb0",
     "scripts/common.sh": "1c82d00b461fad06d9da2224bdcfd10e942972b1814b80ee49f4a8a900d07dce",
     "scripts/setup_guest.sh": "7fc3be9f6ae35027f877ca8bfca8c40356081b23fd43dec44b4df5a36cd7824b",
-    "scripts/verify_delivery.py": "499abd44289b3436a53bf48f7bf0eabfc0e35020ec9654c6f49f4c158b1d3354",
+    "scripts/verify_delivery.py": "733330f3d99a9a80e4a34b0753b351216e02e50fe717b240406fbd94d852a029",
     "scripts/vm.sh": "12cd78903257bb96d6880b2a56503bf400cbc6d912a4c6fc83e9533102d3fc45",
     "scripts/capture_environment.py": "08e065739e9fdd5b81448bad8d597f4bd38fa337d7596f483c7d63a48718c3bd",
-    "scripts/package_submission.py": "b14309d1b1103baa3760b7d79e7fb8b344c46eb8d32cef897536b720b4437649",
+    "scripts/package_submission.py": "9620a54d75b0c5ba1432657c845a534ba2b952835998b9bff85656fecea4e9dd",
     "scripts/run_lab.py": "41b3dd9b33d4f8e98e7387411861ac2b54de02a1f8026afbaf9d1f5054901f98",
-    "scripts/build_report.py": "5a66790b9b2829d7280d9d490d699b0aae618395e793179d84699e808527f54b",
+    "scripts/build_report.py": "03dc76be3e43d97144ff89db7b4ed0caf613b91f9cc968684973c84d1a650449",
     "scripts/local_ssh.sh": "0b78fc7d656121c6eb1759f232dea0cd29583b8a5856efe7de4b88fc65d116eb",
-    "scripts/build_notes.py": "1937d5d0377103c8b1526a5a5d4d1485ece0ef407ef86be6a91f578987187d91",
+    "scripts/build_notes.py": "909217800ba417868aaa42e07f7f56db9974d45dc05eccbd4a589b4787fb4089",
     "scripts/rollback_hardening.sh": "66e0f8121139df2c11ed7d110d9af58ca6e2deb8ef8ece78528cd50be309e177",
     "scripts/proc_inspector.sh": "fc6202f6b9539c6926f42b29cc9709fc34019a659cfdfc41e41ca9afcb89941a",
     "scripts/practice_challenge.sh": "22ddd8f3a21dff99385efeae8bde64ed7acfb04583bf75c9b83a3881a103a9d5",
@@ -236,6 +236,6 @@
     "vm/securelab.yaml": "9fd75aa6d1e0748a3ce78e55c90e86ed4febbf659ddd0e860d3b8c56bb778298",
     "vm/Dockerfile": "54155d27385bdea0c3fcfb7460d11419da52d361f461c04ec22c2cb8f4a8f488"
   },
-  "finished_utc": "2026-11-16T10:23:55.404097+00:00",
+  "finished_utc": "2026-11-16T13:30:14.576133+00:00",
   "verified_count": 22
 }

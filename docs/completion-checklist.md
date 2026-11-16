@@ -25,4 +25,4 @@ Use the generated evidence manifest and report as the authoritative execution st
 - Mission 21: actual guest/kernel/hypervisor/host trust stack, architecture output and added attack surface.
 - Mission 22: six-finding generated practice challenge with baseline/control/retest. Instructor challenge remains separately outstanding.
 
-Supporting deliverables: editable notes; all numbered handout questions; PDF, HTML and Markdown reports; portable source/evidence archive; evidence and archive SHA-256 manifests; no virtual disks or private keys in the submission archive.
+Supporting deliverables: mission notes; all numbered handout questions; final PDF report; requirements-to-evidence map; measured before/after hardening checklist; completed analytical reflection; portable source/evidence archive; evidence and archive SHA-256 manifests; no virtual disks or private keys in the submission archive.

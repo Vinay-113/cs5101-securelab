@@ -9,6 +9,6 @@ test_shared_message (__main__.Programs.test_shared_message) ... ok
 test_syscall_file_and_symlink (__main__.Programs.test_syscall_file_and_symlink) ... ok
 
 ----------------------------------------------------------------------
-Ran 8 tests in 0.362s
+Ran 8 tests in 0.310s
 
 OK

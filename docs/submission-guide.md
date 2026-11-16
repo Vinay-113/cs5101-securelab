@@ -4,12 +4,15 @@ This repository contains the SECURELAB implementation, explanatory report, sourc
 
 ## Read first
 
-1. [Final printable report](../output/pdf/securelab-report.pdf) - 43 pages covering the experiments, observations, explanations, diagrams, comparisons and practice security assessment.
-2. [Editable report](../output/securelab-report.md) - the same report in Markdown.
-3. [Complete submission archive](../output/securelab-submission.zip) - portable source, documentation, reports and evidence.
-4. [Archive checksum](../output/securelab-submission.sha256) - SHA-256 digest of the ZIP.
+1. [Final printable report](../output/pdf/securelab-report.pdf) covering the experiments, observations, explanations, diagrams, comparisons and practice security assessment.
+2. [Complete submission archive](../output/securelab-submission.zip) - portable source, documentation, reports and evidence.
+3. [Archive checksum](../output/securelab-submission.sha256) - SHA-256 digest of the ZIP.
 
-The report does not include a student-details section, as requested.
+The submitted report is PDF-only. The student-details section is omitted as requested.
+
+## Requirements coverage
+
+The PDF includes a handout-page evidence map for every core mission, an explicit before/after hardening checklist with rationale and retests, and the eight-part mission evidence structure. See the [requirements map](requirements-map.json), [hardening checklist](hardening-checklist.json), and [reflection analysis](project-reflection.md).
 
 ## Implementation and evidence
 
@@ -22,13 +25,13 @@ The report does not include a student-details section, as requested.
 - [Provisioning and recovery evidence](../evidence/provisioning/).
 - [Implementation validation notes](validation-notes.md).
 
-The saved run verified all 22 mission scripts. Eight behavior tests passed. Earlier failed attempts are retained with the successful retests; observations are not replaced with predictions.
+The saved run verified all 21 core mission scripts and the separate practice-assessment script (22 laboratory scripts total). Eight behavior tests passed. Earlier failed attempts are retained with the successful retests; observations are not replaced with predictions.
 
 ## Scope of the final assessment
 
 Missions 1-21 implement the handout's core experiments. The environment is a headless Ubuntu 26.04 ARM64 VM on Apple Silicon using Lima/Apple virtualization, with 2 virtual CPUs, 4 GiB RAM and a 40 GiB sparse disk. This adaptation from the recommended Desktop/VirtualBox setup is documented in the report.
 
-Mission 22 is a six-finding, controlled **practice** assessment. The instructor's separate Mission 22 document and prepared challenge VM were not supplied. This repository does not claim that the instructor-specific independent assessment has been completed. Personal reflection answers should be reviewed by the student.
+Mission 22 is a six-finding, controlled **practice** assessment. The instructor's separate Mission 22 document and prepared challenge VM were not supplied. This repository does not claim that the instructor-specific independent assessment has been completed. The report includes completed analytical reflections tied to the recorded results. No unrecorded personal experience is invented.
 
 ## Reproduce and verify
 

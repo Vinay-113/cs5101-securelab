@@ -1,0 +1,181 @@
+[
+  {
+    "mission": 1,
+    "handout_pages": "6",
+    "required": "id and identity program output; authentication/authorization; two workstation attack surfaces",
+    "artifacts": [
+      "src/identity.c"
+    ]
+  },
+  {
+    "mission": 2,
+    "handout_pages": "7",
+    "required": "Identified open/write/close trace and application-to-kernel diagram",
+    "artifacts": [
+      "src/syscall_demo.c",
+      "mission-02/trace.txt",
+      "docs/diagrams.md"
+    ]
+  },
+  {
+    "mission": 3,
+    "handout_pages": "8",
+    "required": "Working process inspector; descriptor count; /proc investigation explanation",
+    "artifacts": [
+      "scripts/proc_inspector.sh"
+    ]
+  },
+  {
+    "mission": 4,
+    "handout_pages": "9",
+    "required": "Live process maps; labelled address space; isolation explanation",
+    "artifacts": [
+      "mission-04/maps.txt",
+      "docs/diagrams.md"
+    ]
+  },
+  {
+    "mission": 5,
+    "handout_pages": "10-11",
+    "required": "Repeated unsafe counts; mutex-protected result; marked critical section",
+    "artifacts": [
+      "src/race_demo.c"
+    ]
+  },
+  {
+    "mission": 6,
+    "handout_pages": "12-13",
+    "required": "Working IPC; message/shared-memory comparison; secure endpoint control",
+    "artifacts": [
+      "src/pipe_ipc.c",
+      "src/shared_ipc.c",
+      "docs/design-tables.json"
+    ]
+  },
+  {
+    "mission": 7,
+    "handout_pages": "14",
+    "required": "Before/after modes; owner/group/other explanation; allowed and denied access",
+    "artifacts": []
+  },
+  {
+    "mission": 8,
+    "handout_pages": "15",
+    "required": "Before/after ACL output; permissions/ACL comparison",
+    "artifacts": []
+  },
+  {
+    "mission": 9,
+    "handout_pages": "16",
+    "required": "id/capsh/getcap inventory and broad/narrow privilege diagram",
+    "artifacts": [
+      "docs/diagrams.md"
+    ]
+  },
+  {
+    "mission": 10,
+    "handout_pages": "17",
+    "required": "Compiler output; observed copy behavior; buffer-boundary diagram",
+    "artifacts": [
+      "build.log",
+      "src/bounded_copy.c",
+      "mission-10/asan-overflow.txt"
+    ]
+  },
+  {
+    "mission": 11,
+    "handout_pages": "18",
+    "required": "checksec output; ASLR value; defenses linked to threats",
+    "artifacts": [
+      "mission-11/protected-headers.txt"
+    ]
+  },
+  {
+    "mission": 12,
+    "handout_pages": "19",
+    "required": "Permission design table; Alice/Bob access tests; least privilege rationale",
+    "artifacts": [
+      "docs/permission-design.md",
+      "docs/design-tables.json"
+    ]
+  },
+  {
+    "mission": 13,
+    "handout_pages": "20",
+    "required": "Original/modified hashes; failed verification and explanation",
+    "artifacts": [
+      "mission-13/config.sha256"
+    ]
+  },
+  {
+    "mission": 14,
+    "handout_pages": "21",
+    "required": "5-10 timestamped events; a logging limitation",
+    "artifacts": [
+      "mission-14/timeline.txt"
+    ]
+  },
+  {
+    "mission": 15,
+    "handout_pages": "22",
+    "required": "Application resource table; sandbox policy; three resource restrictions",
+    "artifacts": [
+      "docs/resource-policy.md",
+      "docs/design-tables.json"
+    ]
+  },
+  {
+    "mission": 16,
+    "handout_pages": "23",
+    "required": "Container output; host/container diagram; VM/container comparison",
+    "artifacts": [
+      "vm/Dockerfile",
+      "docs/design-tables.json",
+      "docs/diagrams.md"
+    ]
+  },
+  {
+    "mission": 17,
+    "handout_pages": "24",
+    "required": "AppArmor status; profile explanation; allowed/denied behavior",
+    "artifacts": [
+      "mission-17/profile"
+    ]
+  },
+  {
+    "mission": 18,
+    "handout_pages": "25",
+    "required": "Model/decision/example/limitation comparison and realistic scenarios",
+    "artifacts": [
+      "docs/access-models.md",
+      "docs/design-tables.json"
+    ]
+  },
+  {
+    "mission": 19,
+    "handout_pages": "26",
+    "required": "Before/after hardening checklist; three justified changes; verification",
+    "artifacts": [
+      "mission-19/before.txt",
+      "mission-19/after.txt",
+      "mission-19/umask-verification.txt",
+      "docs/hardening-checklist.json"
+    ]
+  },
+  {
+    "mission": 20,
+    "handout_pages": "27",
+    "required": "Successful local SSH; authentication/authorization explanation",
+    "artifacts": [
+      "scripts/local_ssh.sh"
+    ]
+  },
+  {
+    "mission": 21,
+    "handout_pages": "28",
+    "required": "Actual VM trust-stack diagram and additional attack surface",
+    "artifacts": [
+      "docs/diagrams.md"
+    ]
+  }
+]

@@ -1,0 +1,11 @@
+* text=auto
+*.c text eol=lf
+*.sh text eol=lf
+*.py text eol=lf
+*.json text eol=lf
+*.md text eol=lf
+Makefile text eol=lf
+*.pdf binary
+*.zip binary
+# Preserve captured evidence bytes so SHA-256 validation survives checkout.
+evidence/** -text

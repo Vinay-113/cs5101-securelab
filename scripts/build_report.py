@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
-"""Generate HTML, Markdown and optional PDF from verified execution evidence."""
+"""Build the submission PDF from recorded experiment evidence and final analysis."""
 import argparse
-import datetime as dt
 import html
 import json
 import re
@@ -21,13 +20,14 @@ REFS=[
  ('Linux capabilities','https://man7.org/linux/man-pages/man7/capabilities.7.html'),
  ('systemd execution controls','https://www.freedesktop.org/software/systemd/man/latest/systemd.exec.html'),
  ('OpenSSH manuals','https://www.openssh.com/manual.html'),
+ ('Ubuntu phased updates','https://ubuntu.com/server/docs/explanation/software/about-apt-upgrade-and-phased-updates/'),
 ]
 FINDINGS=[
  ('F1','Confidentiality / authorization','Bob can read the synthetic incident record at mode 0644.','root:securelab and 0640; Alice remains an authorized reader.','Bob read denied; Alice read succeeds.'),
  ('F2','Integrity / authorization','World-writable configuration allows Bob to modify settings.','Change mode 0666 to 0640.','Bob write test changes from allowed to denied.'),
  ('F3','Integrity / isolation','A mode-0777 directory allows Bob to create entries.','Use root:securelab and 0750.','Bob creates a file before; creation is denied afterward.'),
  ('F4','Attack surface','An unnecessary HTTP listener exposes a fixture on guest loopback port 8088.','Stop the dedicated practice service.','HTTP succeeds before; connection fails and socket is absent afterward.'),
- ('F5','Privilege separation','A sleep worker runs as root despite requiring no privileged operations.','Run as nobody with NoNewPrivileges and ProtectSystem=strict.','Observe root UID before and nobody UID plus NoNewPrivs=1 afterward.'),
+ ('F5','Authorization / isolation','A sleep worker runs as root despite requiring no privileged operations.','Run as nobody with NoNewPrivileges and ProtectSystem=strict.','Observe root UID before and nobody UID plus NoNewPrivs=1 afterward.'),
  ('F6','Integrity monitoring','No protected comparison baseline exists for the practice configuration.','Store a root-readable SHA-256 baseline outside the fixture.','Clean check passes, deliberate drift fails, restored file passes.'),
 ]
 
@@ -45,111 +45,60 @@ def evidence_excerpt(n,log):
 def main():
     ap=argparse.ArgumentParser()
     ap.add_argument('--run',type=Path)
-    ap.add_argument('--no-pdf',action='store_true')
     a=ap.parse_args()
     run=a.run or ROOT/(ROOT/'evidence/latest.txt').read_text().strip()
     if not run.is_absolute(): run=ROOT/run
     manifest=json.loads((run/'manifest.json').read_text())
-    notes=json.loads((ROOT/'docs/mission-notes.json').read_text())
-    design_tables=json.loads((ROOT/'docs/design-tables.json').read_text())
-    out=ROOT/'output'; out.mkdir(exist_ok=True)
-    count=sum(x['status']=='verified' for x in manifest['missions'].values())
     records=[]
-    for r in notes:
-        m=manifest['missions'].get(f'{r["id"]:02d}')
-        rr=dict(r,execution=m)
-        rr['log_path']=str((run/m['log']).relative_to(ROOT)) if m else ''
-        rr['excerpt']=evidence_excerpt(r['id'],(run/m['log']).read_text(errors='replace')) if m else 'Not executed.'
-        records.append(rr)
-    summary=(f'{count}/22 mission scripts verified in run {manifest["run_id"]}. '
-             'This includes a six-finding practice assessment, not the unavailable instructor challenge. '
-             'All execution claims refer to captured guest output; conceptual explanations and predictions are labeled separately.')
+    for row in json.loads((ROOT/'docs/mission-notes.json').read_text()):
+        m=manifest['missions'].get(f'{row["id"]:02d}')
+        r=dict(row,execution=m)
+        r['log_path']=str((run/m['log']).relative_to(ROOT)) if m else ''
+        r['excerpt']=evidence_excerpt(row['id'],(run/m['log']).read_text(errors='replace')) if m else 'Not executed.'
+        if row['id']==19 and (run/'mission-19/umask-verification.txt').exists():
+            after=(run/'mission-19/after.txt').read_text()
+            r['excerpt']='\n'.join(line for line in after.splitlines() if re.match(r'^(Status:|Default:|User=|NoNewPrivileges=|ProtectSystem=|MemoryMax=|TasksMax=|Uid:|NoNewPrivs:)',line))
+            r['excerpt']+='\n'+(run/'mission-19/umask-verification.txt').read_text().strip()
+        records.append(r)
+    count=sum(v['status']=='verified' for v in manifest['missions'].values())
+    core=sum(manifest['missions'].get(f'{n:02d}',{}).get('status')=='verified' for n in range(1,22))
+    test_log=(ROOT/'evidence/program-tests.log').read_text()
+    test_match=re.search(r'Ran (\d+) tests',test_log)
+    assert test_match and '\nOK\n' in test_log,'Behavior tests must be recorded as passed'
+    test_count=int(test_match.group(1))
+    summary=(f'{core}/21 core mission scripts verified; the separate practice-assessment script is '
+             f'{manifest["missions"].get("22",{}).get("status","not run")}. '
+             f'{count}/22 laboratory scripts and {test_count} behavior tests passed in run {manifest["run_id"]}. '
+             'The report includes code references, actual results, requirement mapping, hardening controls and analytical reflections. '
+             'The instructor-specific Mission 22 is awaiting its separate rules and prepared image; the six-finding practice assessment does not replace it.')
     scope=('Host: Apple Silicon macOS. Guest: headless Ubuntu 26.04 LTS ARM64 under Lima/Apple VZ, '
-           '2 vCPUs, 4 GiB RAM and 40 GiB sparse disk. No host folders mounted; no container ports published. '
-           'Guest system and kernel details are captured in Mission 21. '
-           'The Desktop/VirtualBox recommendation is adapted to this host. '
-           'The missing instructor shared-memory sample is replaced with our synchronized anonymous mapping. '
+           '2 vCPUs, 4 GiB RAM and 40 GiB sparse disk. Network: NAT, no host-folder mounts and no published container ports. '
+           'The handout recommends Desktop/VirtualBox; this project uses a documented ARM64 virtualization adaptation. '
+           'Its 4 GiB allocation is within the handout\'s permitted lighter-setup option. '
+           'A stopped-disk APFS clone named SECURELAB-CLEAN provides the tested recovery point. '
+           'The absent instructor shared-memory example is replaced by a synchronized anonymous mapping. '
            'Recorded guest platform: '+manifest['platform']+'.')
-    threat=('Assets: synthetic incident/configuration records, process memory, service credentials and availability. '
-            'Adversaries: an unprivileged lab user (Bob), malformed input and a compromised unprivileged application. '
-            'Trusted dependencies: guest kernel, privileged administrator, compiler, baseline store and the host virtualization stack. '
-            'The practice assessment tests only seeded fixtures inside /opt/securelab/practice and dedicated transient services. '
-            'Host exploitation, public systems and production security certification are outside its scope.')
-    limits=('The instructor Mission 22 image and separate rules remain unavailable. The final assessment here is practice only. '
-            'RBAC is a conceptual comparison, not a deployed role engine. '
-            'Journal markers in Mission 14 are synthetic events, explicitly labeled; they are not automatic records of earlier missions. '
-            'The unsafe race has undefined behavior and varies between runs. '
-            'Short successful tests do not prove complete confinement or absence of vulnerabilities. '
-            'Host secure boot, storage encryption, a hardware TEE and independent forensic authenticity were not measured. '
-            'Personalize the reflective answers before submission.')
-    patch_log=run/'mission-19/after.txt'
-    if patch_log.exists():
-        pending=[line.split('/')[0] for line in patch_log.read_text(errors='replace').splitlines() if '[upgradable from:' in line]
-        limits+=' Recorded pending packages after hardening: '+(', '.join(pending) if pending else 'none listed')+'. See the original apt output for deferred/phased updates.'
-    improvements=('Use the instructor challenge when supplied; compare its rules before applying changes. '
-                  'Export the evidence checksum to a separate trusted location; add remote/persistent audit retention and clock monitoring. '
-                  'Test sandbox controls against a broader required-function matrix and review patch state after a reboot. '
-                  'Consider encrypted storage and verified boot as separate extensions. '
-                  'Keep Docker access restricted and review its firewall interaction before ever publishing a port.')
-    header=f'# SECURELAB - CS5101\n\n## Executive summary\n\n{summary}\n\n## System profile\n\n{scope}\n\n## Threat model and attack surface\n\n{threat}\n\n'
-    practice_status=manifest['missions'].get('22',{}).get('status','not run')
-    md=header+'## Practice assessment findings\n\nExecution status: '+practice_status+'. The conditions, controls and retests below describe the practice design; actual completion requires verified Mission 22 evidence.\n\n'
-    for f in FINDINGS:
-        md+=f'### {f[0]}: {f[1]}\n\nCondition: {f[2]}\n\nRemediation: {f[3]}\n\nRetest: {f[4]}\n\n'
-    md+='These are generated teaching weaknesses, not findings on the macOS host. Evidence: '+str(run.relative_to(ROOT))+'/mission-22/.\n\n'
-    for r in records:
-        m=r['execution']; status=m['status'].upper() if m else 'NOT RUN'
-        md+=f'## Mission {r["id"]:02d}: {r["title"]}\n\nStatus: **{status}**. '
-        if m: md+=f'Exit: {m["exit_code"]}; attempt {m["attempt"]}; UTC {m["started_utc"]}. Evidence: `{r["log_path"]}`.\n\n'
-        else: md+='No execution evidence.\n\n'
-        for k in ['question','prediction']:
-            md+=f'**{k.title()}:** {r[k]}\n\n'
-        md+='**Experiment:** The exact commands are in `missions/run.sh` (and linked helper scripts), recorded with shell tracing in the evidence log.\n\n'
-        md+='**Observation (captured excerpt):**\n\n```text\n'+r['excerpt']+'\n```\n\n'
-        for k in ['concept','defense','verification','reflection']:
-            md+=f'**{k.title()}:** {r[k]}\n\n'
-        for q,answer in r['answers'].items(): md+=f'**Q{q}.** {answer}\n\n'
-    md+='## Design comparisons and inventories\n\n'
-    for t in design_tables:
-        md+='### '+t['title']+'\n\n'
-        for row in t['rows']:
-            md+='; '.join(f'{column}: {value}' for column,value in zip(t['columns'],row))+'\n\n'
-    md+='## Limitations and outstanding instructor requirement\n\n'+limits+'\n\n## Future improvements\n\n'+improvements+'\n\n## References\n\n'
-    for title,url in REFS: md+=f'- {title}: {url}\n'
-    (out/'securelab-report.md').write_text(md)
-    # Standalone HTML: no external fonts, scripts or network dependencies.
-    esc=html.escape
-    pieces=['<!doctype html><html lang="en"><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><title>SECURELAB - CS5101 report</title>',
-    '''<style>:root{color-scheme:light dark}*{box-sizing:border-box}body{margin:0;font:16px/1.6 system-ui,sans-serif;background:#f5f7fa;color:#172333}header,main{max-width:1080px;margin:auto;padding:32px}header{border-bottom:3px solid #235879}h1{font-size:32px;margin:0}h2{font-size:24px;margin-top:2em}h3{font-size:19px}a{color:#235879}nav{display:flex;gap:12px;flex-wrap:wrap;margin:20px 0}article{padding:20px 0;border-top:1px solid #bdc9d2}pre{background:#172333;color:#eef5fa;padding:18px;overflow:auto;font:13px/1.5 ui-monospace,monospace;white-space:pre-wrap;overflow-wrap:anywhere}table{border-collapse:collapse;width:100%;font-size:14px}td,th{text-align:left;vertical-align:top;border-bottom:1px solid #bdc9d2;padding:10px}.meta{font-size:13px;color:#485e70}.notice{border-left:4px solid #956124;padding:12px 20px;background:#f4eddf}.grid{display:grid;grid-template-columns:1fr 1fr;gap:28px}details{margin:12px 0}summary{cursor:pointer;font-weight:600}@media(max-width:700px){.grid{grid-template-columns:1fr}header,main{padding:20px}}@media(prefers-color-scheme:dark){body{background:#141b23;color:#edf1f4}a{color:#9ccce8}.meta{color:#a9bdcc}.notice{background:#322a1e}pre{background:#090e14}}@media print{nav{display:none}article{break-before:page}pre{color:#172333;background:#edf1f4}}</style>''',
-    '<header><p class="meta">SECURE OPERATING SYSTEMS / CS5101</p><h1>Break it. Understand it. Secure it.</h1><p>'+esc(summary)+'</p>',
-    '<p class="notice">Practice challenge only: the instructor Mission 22 rules and image were not supplied. Personalize the reflective answers before submission.</p><nav><a href="#findings">Findings</a><a href="#missions">Missions</a><a href="#limits">Limitations</a><a href="pdf/securelab-report.pdf">Printable PDF</a></nav></header><main>',
-    '<div class="grid"><section><h2>System profile</h2><p>'+esc(scope)+'</p></section><section><h2>Threat model</h2><p>'+esc(threat)+'</p></section></div>',
-    '<h2 id="findings">Six practice findings</h2><p>Execution status: '+esc(practice_status)+'. Retests below describe the practice design; completion requires verified evidence.</p><table><thead><tr><th>Finding</th><th>Before</th><th>Remediation</th><th>Retest</th></tr></thead><tbody>']
-    for f in FINDINGS: pieces.append('<tr>'+''.join('<td>'+esc(t)+'</td>' for t in [f[0]+' / '+f[1],f[2],f[3],f[4]])+'</tr>')
-    pieces.append('</tbody></table><h2 id="missions">Mission evidence</h2><nav>'+''.join(f'<a href="#m{r["id"]}">{r["id"]:02d}</a>' for r in records)+'</nav>')
-    for r in records:
-        m=r['execution']; status=m['status'].upper() if m else 'NOT RUN'
-        pieces.append(f'<article id="m{r["id"]}"><h2>Mission {r["id"]:02d}: {esc(r["title"])}</h2><p class="meta">{status}')
-        if m: pieces.append(f' / exit {m["exit_code"]} / attempt {m["attempt"]} / {esc(m["started_utc"])} / <a href="../{esc(r["log_path"])}">Full evidence log</a>')
-        pieces.append('</p>')
-        for k in ['question','prediction']: pieces.append(f'<p><strong>{k.title()}:</strong> {esc(r[k])}</p>')
-        pieces.append('<h3>Observed output</h3><pre>'+esc(r['excerpt'])+'</pre>')
-        for k in ['concept','defense','verification','reflection']: pieces.append(f'<p><strong>{k.title()}:</strong> {esc(r[k])}</p>')
-        pieces.append('<details><summary>Handout answers</summary>')
-        for q,answer in r['answers'].items(): pieces.append(f'<p><strong>Q{q}.</strong> {esc(answer)}</p>')
-        pieces.append('</details></article>')
-    pieces.append('<h2>Design comparisons and inventories</h2>')
-    for t in design_tables:
-        pieces.append('<h3>'+esc(t['title'])+'</h3><table><thead><tr>'+''.join('<th>'+esc(c)+'</th>' for c in t['columns'])+'</tr></thead><tbody>')
-        for row in t['rows']: pieces.append('<tr>'+''.join('<td>'+esc(c)+'</td>' for c in row)+'</tr>')
-        pieces.append('</tbody></table>')
-    pieces.append('<h2 id="limits">Limitations</h2><p>'+esc(limits)+'</p><h2>Future improvements</h2><p>'+esc(improvements)+'</p><h2>References</h2><ul>')
-    for title,url in REFS:
-        pieces.append('<li>'+ (f'<a href="{esc(url)}">{esc(title)}</a>' if url.startswith('https:') else esc(title+': '+url))+'</li>')
-    pieces.append('</ul></main></html>')
-    (out/'securelab-report.html').write_text(''.join(pieces))
-    if not a.no_pdf: build_pdf(out,records,manifest,summary,scope,threat,limits,improvements)
-    print(f'Generated report from {run}; {count}/22 verified')
+    threat=('Assets: synthetic incident/configuration records, process memory, credentials and availability. '
+            'Untrusted subjects: Bob, malformed input and a compromised unprivileged application. '
+            'Trusted dependencies: guest kernel, administrator, toolchain, integrity baseline and host virtualization stack. '
+            'Assessment scope: lab accounts, owned processes, /opt/securelab fixtures and dedicated teaching services. '
+            'The practice challenge touches only its synthetic files and transient services; public/production targets are outside scope.')
+    after=(run/'mission-19/after.txt').read_text()
+    pending=[line.split('/')[0] for line in after.splitlines() if '[upgradable from:' in line]
+    limits=('The instructor-specific Mission 22 is the remaining external dependency: its rules and challenge image were not supplied. '
+            'RBAC is a conceptual comparison, as requested, rather than a deployed role engine. '
+            'Mission 14 messages are deliberately generated lab events, supported by the corresponding command trace. '
+            'The unsafe C race is undefined behavior and observed counts are run-dependent. '
+            'The umask baseline is an explicitly controlled file-creation fixture; it is not a reconstructed historical shell setting. '
+            'Passing scoped tests does not prove absence of all vulnerabilities. Secure boot, encrypted storage and a hardware TEE were not measured. '
+            'Pending packages after the final hardening audit: '+(', '.join(pending) if pending else 'none listed')+'.')
+    improvements=('Apply the same baseline/control/retest method to the instructor challenge when it is provided. '
+                  'Keep a trusted off-machine copy of the checksum manifest, add remote audit retention and clock monitoring, '
+                  'and broaden sandbox regression coverage. Consider encrypted storage and verified boot as separate extensions. '
+                  'Maintain restricted Docker access and review firewall behavior before publishing any container port.')
+    out=ROOT/'output';out.mkdir(exist_ok=True)
+    build_pdf(out,records,manifest,summary,scope,threat,limits,improvements)
+    print(f'Generated submission PDF from {run}; {core}/21 core missions, {count}/22 lab scripts verified')
 
 
 def build_pdf(out,records,manifest,summary,scope,threat,limits,improvements):
@@ -184,7 +133,7 @@ def build_pdf(out,records,manifest,summary,scope,threat,limits,improvements):
     p('Project implementation, captured experiments and practice security assessment')
     field('Executive summary',summary)
     field('Evidence run',manifest['run_id']+' / '+manifest['started_utc'])
-    field('Scope and substitutions',scope)
+    field('System profile and environment adaptation',scope)
     field('Outstanding instructor requirement','Mission 22 requires a separate rules document and prepared VM that were not provided. This report includes an explicitly labeled practice assessment only.')
     field('Reproduction','See README.md. Exact source, commands, logs, all attempts and checksums are included in the submission archive. Predictions and conceptual answers are not measurements.')
     story.append(PageBreak())
@@ -203,9 +152,44 @@ def build_pdf(out,records,manifest,summary,scope,threat,limits,improvements):
     story.append(PageBreak())
     story.append(para('Practice assessment: findings','Heading1'))
     p('Mission 22 execution status: '+manifest['missions'].get('22',{}).get('status','not run')+'. These six controlled weaknesses are created by scripts/practice_challenge.sh in the disposable guest. They are not discovered vulnerabilities of the macOS host or the unavailable instructor image.')
-    for f in FINDINGS:
-        story.append(KeepTogether([para(f[0]+' - '+f[1],'Heading2'),para('Before: '+f[2]),para('Control: '+f[3]),para('Verification: '+f[4])]))
+    rationales=[
+        'Limit confidential records to the authorized analyst group while retaining Alice\'s required read access.',
+        'Prevent an ordinary account from changing approved configuration without granting unnecessary root access.',
+        'Protect directory entries as well as file contents; a writable directory can permit unauthorized creation or replacement.',
+        'Remove an unnecessary reachable interface instead of relying only on its harmless current content.',
+        'The worker needs no administrative operation. A non-root identity and no-new-privileges reduce the authority available after compromise.',
+        'Detect later drift against a separately protected reference. The check establishes byte agreement, not authorship.'
+    ]
+    for i,f in enumerate(FINDINGS):
+        if i==3:
+            story.append(PageBreak());story.append(para('Practice findings - continued','Heading1'))
+        story.append(KeepTogether([para(f[0]+' - '+f[1],'Heading2'),para('Before: '+f[2]),para('Remediation: '+f[3]),para('Rationale: '+rationales[i]),para('Verification: '+f[4])]))
     p('Full baseline, command traces and after-state are in mission-22 evidence. All six markers must be present before the runner records success.')
+    # Explicit measured before/after hardening comparison.
+    run=ROOT/'evidence/runs'/manifest['run_id']
+    hardening=json.loads((ROOT/'docs/hardening-checklist.json').read_text())
+    before=(run/'mission-19/before.txt').read_text()
+    after=(run/'mission-19/after.txt').read_text()
+    mask=(run/'mission-19/umask-verification.txt').read_text()
+    initial=(run/'mission-19/attempt-1.log').read_text()
+    assert 'Status: inactive' in initial
+    assert re.search(r'^Uid:\s+0\s+0',before,re.M), 'Missing runtime root baseline'
+    assert 'User=nobody' in after and re.search(r'^NoNewPrivs:\s+1',after,re.M)
+    for marker in ['CONTROLLED_BASELINE_UMASK=0022','CONTROLLED_BASELINE_MODE=644','PROJECT_UMASK=0077','SECURED_FILE_MODE=600']:
+        assert marker in mask,marker
+    pending=[line for line in after.splitlines() if '[upgradable from:' in line]
+    hardening['rows'][-1][2]=str(len(pending))+' pending packages listed in the final captured inventory.'
+    story.append(PageBreak());story.append(para(hardening['title'],'Heading1'))
+    p(hardening['baseline_note'])
+    def grid(columns,rows,widths):
+        cells=[[para(c,'SmallLab') for c in columns]]+[[para(c,'SmallLab') for c in row] for row in rows]
+        tab=Table(cells,colWidths=widths,repeatRows=1,hAlign='LEFT')
+        tab.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.HexColor('#e3edf4')),('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),6),('RIGHTPADDING',(0,0),(-1,-1),6),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7),('LINEBELOW',(0,0),(-1,-1),0.4,colors.HexColor('#ccd9e3'))]))
+        story.append(tab)
+    grid(hardening['columns'],hardening['rows'],[82,120,130,A4[0]-432])
+    field('Observed ordinary-file creation', 'The controlled baseline produces mode 0644. Loading the project policy produces mode 0600. Both assertions are checked on files created with touch inside a private directory.')
+    field('Rollback',hardening['rollback'])
+    story.append(para('Evidence: mission-19 initial/latest attempt logs, before.txt, after.txt and umask-verification.txt; evidence/provisioning/submission-patch-completion.log.','SmallLab'))
     # Core mission sheets, one clear start per mission.
     for r in records:
         story.append(PageBreak())
@@ -249,17 +233,33 @@ def build_pdf(out,records,manifest,summary,scope,threat,limits,improvements):
     code('buffer[16]: | valid indexes 0..15 | adjacent memory ...\n34-byte copy|XXXXXXXXXXXXXXXX|XXXXXXXXXXXXXXXXXX\n                             ^ first out-of-bounds byte\nSafe bound: 15 payload bytes + 1 NUL; reject 16 + NUL.')
     # Append conceptual answers independently from measured observations.
     story.append(PageBreak());story.append(para('Handout answers and design notes','Heading1'))
-    p('These are explanatory answers. Reflection prompts are drafts grounded in the experiments; personalize them using your own learning experience. They are not invented first-person observations.')
+    p('These answers explain the captured results. Reflective answers analyze those results and their security implications; they do not invent unrecorded personal experience.')
     for r in records:
         h(f'Mission {r["id"]:02d} - {r["title"]}')
         for q,answer in r['answers'].items():
             story.append(KeepTogether([para('Q'+q,'LabelLab'),para(answer)]))
+    story.append(PageBreak());story.append(para('Reflection on the recorded experiments','Heading1'))
+    p('The following analysis connects the observed results to the final reflection questions in the handout.')
+    for title,body in json.loads((ROOT/'docs/project-reflection.json').read_text()):
+        h(title);p(body)
+    story.append(PageBreak());story.append(para('Requirements-to-evidence map','Heading1'))
+    p('Handout pages refer to the 35-page specification supplied for CS5101. All core mission entries below include the required evidence and explanations. Full logs live under evidence/runs/'+manifest['run_id']+'/; selected output and the eight evidence-template fields appear in each mission sheet.')
+    mapped=[]
+    for row in json.loads((ROOT/'docs/requirements-map.json').read_text()):
+        n=row['mission'];execution=manifest['missions'][f'{n:02d}']
+        artifacts=[execution['log'],*row['artifacts']]
+        mapped.append([f'M{n:02d} / p'+row['handout_pages'],row['required'],'; '.join(artifacts),'Verified' if execution['status']=='verified' else execution['status']])
+    grid(['Mission / page','Required submission evidence','Included artifacts','Core result'],mapped,[54,154,233,A4[0]-541])
+    h('External dependency: instructor Mission 22')
+    p('Handout page 29 requires a separately supplied challenge VM and rules document. These resources remain unavailable. The repository includes six verified practice findings with baseline, classification, control and retest evidence, but the official independent assessment is not marked completed.')
+    h('Environment and report requirements')
+    p('The guest uses Linux/Ubuntu 26.04 ARM64, 2 vCPUs, 4 GiB RAM, a 40 GiB sparse disk and NAT. Four GiB is the lighter-setup option permitted on handout page 3. The Desktop/VirtualBox recommendation is adapted to headless Lima/Apple virtualization. SECURELAB-CLEAN and FINAL-HARDENED stopped-disk copies were restore-tested. The project contains source, notes, command/output evidence and the required report topics: executive summary, system profile, threat model, attack surface, findings, remediation/rationale, verification, reflection and future improvements.')
     # Comparison tables required by the handout; all content is conceptual design.
     for t in json.loads((ROOT/'docs/design-tables.json').read_text()):
         story.append(PageBreak());story.append(para(t['title'],'Heading1'))
         p('Design rationale; actual permissions and resource limits are verified in the corresponding mission logs.')
         cells=[[para(c,'SmallLab') for c in t['columns']]]+[[para(c) for c in row] for row in t['rows']]
-        tab=Table(cells,colWidths=[(A4[0]-88)/len(t['columns'])]*len(t['columns']),repeatRows=1,hAlign='LEFT')
+        tab=Table(cells,colWidths=[(A4[0]-100)/len(t['columns'])]*len(t['columns']),repeatRows=1,hAlign='LEFT')
         tab.setStyle(TableStyle([('BACKGROUND',(0,0),(-1,0),colors.HexColor('#e3edf4')),('VALIGN',(0,0),(-1,-1),'TOP'),('LEFTPADDING',(0,0),(-1,-1),7),('RIGHTPADDING',(0,0),(-1,-1),7),('TOPPADDING',(0,0),(-1,-1),7),('BOTTOMPADDING',(0,0),(-1,-1),7),('LINEBELOW',(0,0),(-1,0),1,colors.HexColor('#aabfcc')),('LINEBELOW',(0,1),(-1,-1),0.4,colors.HexColor('#d5dfe6'))]))
         story.append(tab)
     # Supporting comparison and permission design required by the handout.
@@ -282,7 +282,7 @@ def build_pdf(out,records,manifest,summary,scope,threat,limits,improvements):
         c.setStrokeColor(colors.HexColor('#c6d2dc'));c.line(44,h-28,w-44,h-28)
         c.setFont('Helvetica',8);c.setFillColor(colors.HexColor('#496074'))
         c.drawString(44,h-22,'SECURELAB / CS5101 / evidence-based project report')
-        c.drawString(44,25,'Practice assessment; instructor Mission 22 remains separate')
+        c.drawString(44,25,'SECURELAB / CS5101 / recorded laboratory evidence')
         c.drawRightString(w-44,25,str(doc.page));c.restoreState()
     doc.build(story,onFirstPage=page,onLaterPages=page)
 

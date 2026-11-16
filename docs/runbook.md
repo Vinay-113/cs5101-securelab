@@ -2,7 +2,7 @@
 
 ## Ten-minute presentation
 
-1. Open the PDF or HTML report, show the execution count, scope, blank student details, and the separate instructor-challenge limitation.
+1. Open the PDF report and show its core-lab result, requirements map, scope, and separate instructor-challenge dependency.
 2. Show Mission 1 identity output and explain real/effective IDs versus authentication/authorization.
 3. Show Mission 2's actual openat/write/close trace and the system-call trust boundary.
 4. Compare Mission 4's address maps and Mission 5's repeated unsafe/protected counts. Explain that undefined behavior is not guaranteed to produce a specific value.
@@ -11,7 +11,7 @@
 7. Show the constrained container's cgroup limits, namespace identity and read-only failure. Explain its shared-kernel dependency.
 8. Show the hardening before/after inventory, local key-authenticated SSH, and the actual VM trust stack.
 9. Show the practice challenge's F1-F6 verification markers and distinguish generated fixtures from the unavailable instructor assessment.
-10. Show evidence hashes and the clean stopped-disk recovery copy. Present your own reflection and future improvements.
+10. Show evidence hashes and the clean stopped-disk recovery copy. Explain the evidence-based reflection and future improvements.
 
 ## If a mission fails
 
@@ -23,4 +23,4 @@ The managed Lima SSH listener is host-local. Check `bash scripts/vm.sh status` a
 
 ## Before submitting
 
-Add your name, roll number and team details. Read the source and explain it in your own words. Personalize the reflection prompts. Confirm your instructor accepts the headless ARM64 setup and the format of your evidence. Complete the instructor-specific Mission 22 when its rules/image are supplied. Keep a trusted evidence archive separately and verify its checksum.
+Read the source and be prepared to explain the observed results and analytical reflections. Confirm your instructor accepts the headless ARM64 setup and the format of your evidence. Complete the instructor-specific Mission 22 when its rules/image are supplied. Keep a trusted evidence archive separately and verify its checksum.

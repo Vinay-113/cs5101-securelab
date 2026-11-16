@@ -1,0 +1,49 @@
+{
+  "title": "Mission 19: before/after hardening checklist",
+  "columns": [
+    "Control",
+    "Before",
+    "After",
+    "Rationale and verification"
+  ],
+  "rows": [
+    [
+      "Incoming firewall",
+      "Inactive in the initial Mission 19 baseline (attempt 1).",
+      "Active; default deny incoming; allow outgoing; management SSH allowed.",
+      "Reduce unsolicited reachability. Initial log, latest firewall status and successful local SSH provide evidence."
+    ],
+    [
+      "Worker identity",
+      "The controlled teaching service runs as root (UID 0).",
+      "The same worker runs as nobody (UID 65534).",
+      "Remove unneeded root authority. Runtime credentials are captured before and after."
+    ],
+    [
+      "Worker confinement",
+      "NoNewPrivileges=no; ProtectSystem=no.",
+      "NoNewPrivileges=yes; ProtectSystem=strict; runtime NoNewPrivs=1.",
+      "Prevent new privilege and broad filesystem writes. Configuration and live process fields agree."
+    ],
+    [
+      "Worker resources",
+      "MemoryMax=infinity.",
+      "MemoryMax=67108864 bytes (64 MiB); TasksMax=16.",
+      "Limit availability impact. The final systemd properties record the configured bounds."
+    ],
+    [
+      "Ordinary new-file access",
+      "Controlled child-shell umask 0022 produces an ordinary file at mode 0644.",
+      "Loading the project umask 0077 produces an ordinary file at mode 0600.",
+      "Reduce unintended sharing. Both files are created with touch, not mktemp, inside a private test directory."
+    ],
+    [
+      "Package state",
+      "The earlier audit recorded four deferred utility updates.",
+      "0 pending packages listed in the final captured inventory.",
+      "Install available updates and record the real package state; never infer patching from apt update alone."
+    ]
+  ],
+  "baseline_note": "The initial firewall baseline is preserved in mission-19/attempt-1.log. Service-before and verified-after observations come from the latest Mission 19 attempt. The umask comparison is a deliberately controlled fixture, not a claim that the original login shell used 0022. Repeated runs can begin with UFW already active.",
+  "rollback": "Restore the SECURELAB-CLEAN stopped-disk recovery copy for a full reversal. scripts/rollback_hardening.sh restores the recorded UFW files/state and removes the lab worker and umask policy; it does not undo package upgrades."
+}

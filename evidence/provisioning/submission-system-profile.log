@@ -1,0 +1,43 @@
+2026-11-16T13:25:16+00:00
+Linux lima-securelab 7.0.0-43-generic #43-Ubuntu SMP PREEMPT_DYNAMIC Fri Oct 23 13:33:03 UTC 2026 aarch64 GNU/Linux
+aarch64
+PRETTY_NAME="Ubuntu 26.04.1 LTS"
+NAME="Ubuntu"
+VERSION_ID="26.04"
+VERSION="26.04.1 LTS (Resolute Raccoon)"
+VERSION_CODENAME=resolute
+ID=ubuntu
+ID_LIKE=debian
+HOME_URL="https://www.ubuntu.com/"
+SUPPORT_URL="https://help.ubuntu.com/"
+BUG_REPORT_URL="https://bugs.launchpad.net/ubuntu/"
+PRIVACY_POLICY_URL="https://www.ubuntu.com/legal/terms-and-policies/privacy-policy"
+UBUNTU_CODENAME=resolute
+LOGO=ubuntu-logo
+uid=501(vinaypatil) gid=1000(vinaypatil) groups=1000(vinaypatil),999(systemd-journal)
+lo               UNKNOWN        127.0.0.1/8 ::1/128 
+eth0             UP             192.168.5.15/24 metric 200 fe80::5055:55ff:fe4e:ea76/64 
+docker0          DOWN           172.17.0.1/16 
+default via 192.168.5.2 dev eth0 proto dhcp src 192.168.5.15 metric 200 
+172.17.0.0/16 dev docker0 proto kernel scope link src 172.17.0.1 linkdown 
+192.168.5.0/24 dev eth0 proto kernel scope link src 192.168.5.15 metric 200 
+192.168.5.2 dev eth0 proto dhcp scope link src 192.168.5.15 metric 200 
+               total        used        free      shared  buff/cache   available
+Mem:           3.8Gi       592Mi       2.4Gi       1.1Mi       1.0Gi       3.2Gi
+Swap:             0B          0B          0B
+Filesystem      Size  Used Avail Use% Mounted on
+/dev/vda1        38G  4.8G   33G  13% /
+gcc (Ubuntu 15.2.0-16ubuntu1) 15.2.0
+strace -- version 6.19
+apple
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), deny (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW IN    Anywhere                   # SECURELAB guest management SSH
+22/tcp (v6)                ALLOW IN    Anywhere (v6)              # SECURELAB guest management SSH
+
+Listing...

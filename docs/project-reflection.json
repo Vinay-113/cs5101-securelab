@@ -1,0 +1,22 @@
+[
+  [
+    "Most notable protection mechanism",
+    "The most striking result is the AppArmor probe: both teaching files opened under DAC, yet the same program was denied one file after its profile was enforced. Compared with the temporary ACL grant for Bob, this shows that owner-controlled permission and mandatory application policy answer different authorization questions. The allowed-file control still succeeded, demonstrating selective confinement rather than a general application failure."
+  ],
+  [
+    "A problem needing several OS mechanisms",
+    "The incident-record experiment combines directory traversal policy with file modes: Alice can read, Bob cannot, and Alice cannot rewrite the root-owned file. Hashing adds a different guarantee only when its comparison baseline is protected separately. These controls address authorization and integrity independently; a correct digest alone does not prevent disclosure or prove authorship."
+  ],
+  [
+    "Process isolation and memory safety",
+    "The address-space maps show that pointers belong to a process-specific mapping. The overflow experiment then demonstrates a separate issue inside that mapping: a program can corrupt its own stack despite inter-process isolation. The fixed 34-byte copy into 16 bytes triggers the protected build and ASan; rejecting an overlong input before copying prevents the invalid access."
+  ],
+  [
+    "Repeated use of least privilege",
+    "Least privilege recurs in Alice/Bob mode checks, the temporary read-only ACL grant and its revocation, the capability inventory, the worker identity change, the AppArmor file policy and the container restrictions. The practical verification pattern is consistent: reject an unnecessary action while retaining the action the program or user actually needs."
+  ],
+  [
+    "Consequences of kernel compromise",
+    "A compromised guest kernel could bypass permission checks, inspect or modify process memory, falsify /proc and alter logs. In-guest validation would therefore lose its trusted foundation. The VM also depends on the host kernel and virtualization stack; minimizing shared interfaces reduces exposure without eliminating those trust dependencies."
+  ]
+]

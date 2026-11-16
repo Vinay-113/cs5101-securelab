@@ -5,7 +5,7 @@ import json
 from pathlib import Path
 import zipfile
 ROOT=Path(__file__).resolve().parents[1]
-ALLOWED=['README.md','Makefile','.gitignore','src','scripts','missions','notes','docs','tests','vm','evidence','output/securelab-report.md','output/securelab-report.html','output/pdf/securelab-report.pdf']
+ALLOWED=['README.md','Makefile','.gitignore','.gitattributes','src','scripts','missions','notes','docs','tests','vm','evidence','output/pdf/securelab-report.pdf']
 
 def main():
     out=ROOT/'output';out.mkdir(exist_ok=True)

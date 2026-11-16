@@ -1,0 +1,206 @@
+UTC: 2026-11-16T13:25:10.437406+00:00
+Mission: 19
++ run.sh:2: set -euo pipefail
+++ run.sh:3: dirname /home/vinaypatil.guest/securelab/missions/run.sh
++ run.sh:3: source /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
+++ common.sh:2: set -euo pipefail
+++ common.sh:3: export LC_ALL=C
+++ common.sh:3: LC_ALL=C
+++++ common.sh:4: dirname /home/vinaypatil.guest/securelab/missions/../scripts/common.sh
++++ common.sh:4: cd /home/vinaypatil.guest/securelab/missions/../scripts/..
++++ common.sh:4: pwd
+++ common.sh:4: ROOT=/home/vinaypatil.guest/securelab
+++ common.sh:5: : /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-19
+++ common.sh:6: mkdir -p /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-19
+++ common.sh:7: cd /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-19
+++ common.sh:8: BIN=/opt/securelab/bin
+++ common.sh:9: LAB=/opt/securelab
+++ common.sh:21: need_vm
++++ common.sh:11: uname -s
+++ common.sh:11: [[ Linux == Linux ]]
+++ common.sh:11: [[ -f /etc/securelab-vm ]]
+++ common.sh:12: sudo -n true
+++ common.sh:22: ulimit -c 0
++ run.sh:4: mission=19
++ run.sh:5: case "$mission" in
++ run.sh:194: bash /home/vinaypatil.guest/securelab/scripts/hardening.sh /home/vinaypatil.guest/securelab/evidence/runs/20261116T101423Z/mission-19
+2026-11-16T13:25:10+00:00
+7.0.0-43-generic
+No reboot-required marker
+  UNIT                                 LOAD   ACTIVE SUB     DESCRIPTION
+  auditd.service                       loaded active running Security Audit Logging Service
+  chrony.service                       loaded active running chrony, an NTP client/server
+  containerd.service                   loaded active running containerd container runtime
+  cron.service                         loaded active running Regular background program processing daemon
+  dbus.service                         loaded active running D-Bus System Message Bus
+  docker.service                       loaded active running Docker Application Container Engine
+  getty@tty1.service                   loaded active running Getty on tty1
+  lima-guestagent.service              loaded active running lima-guestagent
+  ModemManager.service                 loaded active running Modem Manager
+  multipathd.service                   loaded active running Device-Mapper Multipath Device Controller
+  networkd-dispatcher.service          loaded active running Dispatcher daemon for systemd-networkd
+  packagekit.service                   loaded active running PackageKit Daemon
+  polkit.service                       loaded active running Authorization Manager
+  rsyslog.service                      loaded active running System Logging Service
+  securelab-worker.service             loaded active running SECURELAB teaching worker
+  serial-getty@hvc0.service            loaded active running Serial Getty on hvc0
+  ssh.service                          loaded active running OpenBSD Secure Shell server
+  sshd@4-4099-3:22-2:287802218.service loaded active running OpenBSD Secure Shell server per-connection daemon
+  systemd-journald.service             loaded active running Journal Service
+  systemd-logind.service               loaded active running User Login Management
+  systemd-networkd.service             loaded active running Network Management
+  systemd-resolved.service             loaded active running Network Name Resolution
+  systemd-udevd.service                loaded active running Rule-based Manager for Device Events and Files
+  udisks2.service                      loaded active running Disk Manager
+  unattended-upgrades.service          loaded active running Unattended Upgrades Shutdown
+  user@501.service                     loaded active running User Manager for UID 501
+
+Legend: LOAD   -> Reflects whether the unit definition was properly loaded.
+        ACTIVE -> The high-level unit activation state, i.e. generalization of SUB.
+        SUB    -> The low-level unit activation state, values depend on unit type.
+
+26 loaded units listed.
+Netid State  Recv-Q Send-Q     Local Address:Port Peer Address:PortProcess                                                
+udp   UNCONN 0      0             127.0.0.54:53        0.0.0.0:*    users:(("systemd-resolve",pid=473,fd=21))             
+udp   UNCONN 0      0          127.0.0.53%lo:53        0.0.0.0:*    users:(("systemd-resolve",pid=473,fd=19))             
+udp   UNCONN 0      0      192.168.5.15%eth0:68        0.0.0.0:*    users:(("systemd-network",pid=787,fd=33))             
+udp   UNCONN 0      0              127.0.0.1:323       0.0.0.0:*    users:(("chronyd",pid=1041,fd=4))                     
+udp   UNCONN 0      0                0.0.0.0:5353      0.0.0.0:*    users:(("systemd-resolve",pid=473,fd=13))             
+udp   UNCONN 0      0                  [::1]:323          [::]:*    users:(("chronyd",pid=1041,fd=5))                     
+udp   UNCONN 0      0                   [::]:5353         [::]:*    users:(("systemd-resolve",pid=473,fd=14))             
+tcp   LISTEN 0      4096             0.0.0.0:22        0.0.0.0:*    users:(("sshd",pid=968,fd=3),("systemd",pid=1,fd=137))
+tcp   LISTEN 0      4096       127.0.0.53%lo:53        0.0.0.0:*    users:(("systemd-resolve",pid=473,fd=20))             
+tcp   LISTEN 0      4096          127.0.0.54:53        0.0.0.0:*    users:(("systemd-resolve",pid=473,fd=22))             
+tcp   LISTEN 0      4096                [::]:22           [::]:*    users:(("sshd",pid=968,fd=4),("systemd",pid=1,fd=138))
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), deny (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW IN    Anywhere                   # SECURELAB guest management SSH
+22/tcp (v6)                ALLOW IN    Anywhere (v6)              # SECURELAB guest management SSH
+
+Listing...
+MemoryMax=infinity
+TasksMax=4107
+User=
+ProtectSystem=no
+NoNewPrivileges=no
+    PID   UID  EUID COMMAND
+  11664     0     0 /usr/bin/sleep infinity
+Uid:	0	0	0	0
+CapEff:	000001ffffffffff
+NoNewPrivs:	0
+Skipping adding existing rule
+Skipping adding existing rule (v6)
+Default incoming policy changed to 'deny'
+(be sure to update your rules accordingly)
+Default outgoing policy changed to 'allow'
+(be sure to update your rules accordingly)
+Firewall is active and enabled on system startup
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), deny (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW IN    Anywhere                   # SECURELAB guest management SSH
+22/tcp (v6)                ALLOW IN    Anywhere (v6)              # SECURELAB guest management SSH
+
+    PID   UID  EUID COMMAND
+  12798 65534 65534 /usr/bin/sleep infinity
+Uid:	65534	65534	65534	65534
+CapEff:	0000000000000000
+NoNewPrivs:	1
+Seccomp:	2
+Seccomp_filters:	5
+CONTROLLED_BASELINE_UMASK=0022
+CONTROLLED_BASELINE_MODE=644
+PROJECT_UMASK=0077
+SECURED_FILE_MODE=600
+Hit:1 https://download.docker.com/linux/ubuntu resolute InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu resolute InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu resolute-updates InRelease
+Hit:4 http://archive.ubuntu.com/ubuntu resolute-backports InRelease
+Hit:5 http://security.ubuntu.com/ubuntu resolute-security InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+Calculating upgrade...
+0 upgraded, 0 newly installed, 0 to remove and 0 not upgraded.
+2026-11-16T13:25:14+00:00
+7.0.0-43-generic
+No reboot-required marker
+  UNIT                                 LOAD   ACTIVE SUB     DESCRIPTION
+  auditd.service                       loaded active running Security Audit Logging Service
+  chrony.service                       loaded active running chrony, an NTP client/server
+  containerd.service                   loaded active running containerd container runtime
+  cron.service                         loaded active running Regular background program processing daemon
+  dbus.service                         loaded active running D-Bus System Message Bus
+  docker.service                       loaded active running Docker Application Container Engine
+  getty@tty1.service                   loaded active running Getty on tty1
+  lima-guestagent.service              loaded active running lima-guestagent
+  ModemManager.service                 loaded active running Modem Manager
+  multipathd.service                   loaded active running Device-Mapper Multipath Device Controller
+  networkd-dispatcher.service          loaded active running Dispatcher daemon for systemd-networkd
+  packagekit.service                   loaded active running PackageKit Daemon
+  polkit.service                       loaded active running Authorization Manager
+  rsyslog.service                      loaded active running System Logging Service
+  securelab-worker.service             loaded active running SECURELAB confined teaching worker
+  serial-getty@hvc0.service            loaded active running Serial Getty on hvc0
+  ssh.service                          loaded active running OpenBSD Secure Shell server
+  sshd@4-4099-3:22-2:287802218.service loaded active running OpenBSD Secure Shell server per-connection daemon
+  systemd-journald.service             loaded active running Journal Service
+  systemd-logind.service               loaded active running User Login Management
+  systemd-networkd.service             loaded active running Network Management
+  systemd-resolved.service             loaded active running Network Name Resolution
+  systemd-udevd.service                loaded active running Rule-based Manager for Device Events and Files
+  udisks2.service                      loaded active running Disk Manager
+  unattended-upgrades.service          loaded active running Unattended Upgrades Shutdown
+  user@501.service                     loaded active running User Manager for UID 501
+
+Legend: LOAD   -> Reflects whether the unit definition was properly loaded.
+        ACTIVE -> The high-level unit activation state, i.e. generalization of SUB.
+        SUB    -> The low-level unit activation state, values depend on unit type.
+
+26 loaded units listed.
+Netid State  Recv-Q Send-Q     Local Address:Port Peer Address:PortProcess                                                
+udp   UNCONN 0      0             127.0.0.54:53        0.0.0.0:*    users:(("systemd-resolve",pid=473,fd=21))             
+udp   UNCONN 0      0          127.0.0.53%lo:53        0.0.0.0:*    users:(("systemd-resolve",pid=473,fd=19))             
+udp   UNCONN 0      0      192.168.5.15%eth0:68        0.0.0.0:*    users:(("systemd-network",pid=787,fd=33))             
+udp   UNCONN 0      0              127.0.0.1:323       0.0.0.0:*    users:(("chronyd",pid=1041,fd=4))                     
+udp   UNCONN 0      0                0.0.0.0:5353      0.0.0.0:*    users:(("systemd-resolve",pid=473,fd=13))             
+udp   UNCONN 0      0                  [::1]:323          [::]:*    users:(("chronyd",pid=1041,fd=5))                     
+udp   UNCONN 0      0                   [::]:5353         [::]:*    users:(("systemd-resolve",pid=473,fd=14))             
+tcp   LISTEN 0      4096             0.0.0.0:22        0.0.0.0:*    users:(("sshd",pid=968,fd=3),("systemd",pid=1,fd=220))
+tcp   LISTEN 0      4096       127.0.0.53%lo:53        0.0.0.0:*    users:(("systemd-resolve",pid=473,fd=20))             
+tcp   LISTEN 0      4096          127.0.0.54:53        0.0.0.0:*    users:(("systemd-resolve",pid=473,fd=22))             
+tcp   LISTEN 0      4096                [::]:22           [::]:*    users:(("sshd",pid=968,fd=4),("systemd",pid=1,fd=221))
+Status: active
+Logging: on (low)
+Default: deny (incoming), allow (outgoing), deny (routed)
+New profiles: skip
+
+To                         Action      From
+--                         ------      ----
+22/tcp                     ALLOW IN    Anywhere                   # SECURELAB guest management SSH
+22/tcp (v6)                ALLOW IN    Anywhere (v6)              # SECURELAB guest management SSH
+
+Listing...
+MemoryMax=67108864
+TasksMax=16
+User=nobody
+ProtectSystem=strict
+NoNewPrivileges=yes
+    PID   UID  EUID COMMAND
+  12798 65534 65534 /usr/bin/sleep infinity
+Uid:	65534	65534	65534	65534
+CapEff:	0000000000000000
+NoNewPrivs:	1
+Verified: incoming firewall policy, confined unprivileged service, restrictive umask.
++ run.sh:211: echo 'MISSION 19 VERIFIED'
+MISSION 19 VERIFIED

@@ -21,3 +21,7 @@ id_ed25519
 
 # Include the ready-to-submit archive requested for the repository.
 !output/securelab-submission.zip
+
+# The submitted report is PDF-only.
+output/securelab-report.md
+output/securelab-report.html

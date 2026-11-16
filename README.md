@@ -9,17 +9,20 @@ The instructor's separate Mission 22 rules and challenge VM were not supplied. T
 Start with the [submission guide](docs/submission-guide.md). The repository contains the complete submission archive and its unpacked source, documentation, reports, and captured evidence.
 
 - [Printable report](output/pdf/securelab-report.pdf)
-- [Editable report](output/securelab-report.md)
 - [Complete submission ZIP](output/securelab-submission.zip)
 - [ZIP SHA-256 checksum](output/securelab-submission.sha256)
 
-Recorded validation: **22/22 mission scripts verified and 8 program tests passed**. Mission 22 is an explicitly labeled practice challenge because the instructor's separate challenge image and rules were unavailable.
+Recorded validation: **21 core mission scripts, 1 practice-assessment script and 8 behavior tests passed**. Mission 22 is an explicitly labeled practice challenge because the instructor's separate challenge image and rules were unavailable.
+
+## Requirements and verification
+
+- [Requirement-by-requirement evidence map](docs/requirements-map.json)
+- [Explicit before/after hardening checklist](docs/hardening-checklist.json)
+- [Completed analysis of the recorded experiments](docs/project-reflection.md)
 
 ## Open the results
 
 - `output/pdf/securelab-report.pdf`: printable report generated from actual evidence.
-- `output/securelab-report.html`: standalone searchable report with links to raw evidence.
-- `output/securelab-report.md`: editable report text.
 - `evidence/latest.txt`: latest run location; `manifest.json` records each mission's status, exit code and attempts.
 - `notes/mission-01.md` through `mission-22.md`: predictions, concepts, defenses, verification and answers to the handout questions.
 - `docs/diagrams.md`, `docs/permission-design.md`, `docs/access-models.md`, `docs/resource-policy.md`: diagrams and design rationale.
@@ -40,7 +43,7 @@ bash scripts/vm.sh fetch
 python3 scripts/build_report.py
 ```
 
-`build_report.py` needs ReportLab only for PDF export (`python3 -m pip install reportlab`), or pass `--no-pdf` for HTML/Markdown. A bundled Python with ReportLab may be used. Linux's guest setup installs python3-reportlab.
+`build_report.py` needs ReportLab only for PDF export (`python3 -m pip install reportlab`), and produces the PDF submission report. A bundled Python with ReportLab may be used. Linux's guest setup installs python3-reportlab.
 
 The first run downloads an approximately 900 MB guest image, allocates a **40 GiB sparse disk**, and uses **4 GiB RAM / 2 vCPUs** while running. Lima itself is kept in `.tools`. VM data lives in `.vm`, and stopped-disk recovery copies live in `.vm-recovery`; Lima's downloaded-image cache may live in the user's normal Lima cache. No host directories are mounted into the VM. Extra guest port forwarding is disabled; managed SSH uses a host loopback endpoint. The VM has outbound NAT for package/image downloads. Docker publishes no ports and no host bridge is added.
 
@@ -90,4 +93,4 @@ Stop the VM when finished to release RAM: `bash scripts/vm.sh stop`. It can be r
 
 Every run contains commands, outputs, UTC timestamps, exit statuses, artifacts and SHA-256 checksums. Verify them inside a run directory with `sha256sum -c SHA256SUMS`. Checksums detect drift against this reference, not independent authorship. Keep a trusted copy elsewhere if stronger integrity assurance is needed.
 
-Build a portable submission with `python3 scripts/package_submission.py`. It includes source, notes, reports and captured evidence; it excludes `.vm`, `.tools`, caches and generated executables. Do not submit the virtual disk or SSH management keys. Student name/roll number are intentionally not invented; add your details before submission. Review the reflection prompts in your own words.
+Build a portable submission with `python3 scripts/package_submission.py`. It includes source, notes, reports and captured evidence; it excludes `.vm`, `.tools`, caches and generated executables. Do not submit the virtual disk or SSH management keys. The submission report is PDF-only. The analytical reflections are grounded in recorded results; the instructor-specific Mission 22 remains separately pending.

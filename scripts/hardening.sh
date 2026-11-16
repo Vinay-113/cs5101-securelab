@@ -10,7 +10,10 @@ baseline() {
   sudo ss -lntup
   sudo ufw status verbose
   apt list --upgradable 2>/dev/null
-  systemctl show securelab-worker -p User -p NoNewPrivileges -p ProtectSystem -p MemoryMax
+  systemctl show securelab-worker -p User -p NoNewPrivileges -p ProtectSystem -p MemoryMax -p TasksMax
+  worker_pid=$(systemctl show securelab-worker -p MainPID --value)
+  ps -p "$worker_pid" -o pid,uid,euid,args
+  sudo cat "/proc/$worker_pid/status" | grep -E '^(Uid|CapEff|NoNewPrivs):'
 }
 # An isolated teaching service makes the privilege change measurable.
 cat > "$out/worker-before.service" <<'UNIT'
@@ -70,7 +73,23 @@ sudo cat "/proc/$pid/status" | grep -E 'Uid|CapEff|NoNewPrivs|Seccomp'
 # Change 3: set secure defaults for future interactive lab files.
 printf 'umask 077\n' | sudo tee /etc/profile.d/securelab-umask.sh >/dev/null
 sudo chmod 0644 /etc/profile.d/securelab-umask.sh
-bash -c 'source /etc/profile.d/securelab-umask.sh; umask; f=$(mktemp); touch "$f"; stat -c "%a %n" "$f"; test "$(stat -c %a "$f")" = 600; rm "$f"'
+# mktemp always uses 0600, so it cannot validate ordinary file-creation umask.
+# Use an isolated directory and ordinary touch in a controlled before/after test.
+bash -c '
+  sandbox=$(mktemp -d)
+  trap "rm -rf -- \"$sandbox\"" EXIT
+  umask 022
+  touch "$sandbox/before"
+  before=$(stat -c %a "$sandbox/before")
+  printf "CONTROLLED_BASELINE_UMASK=%s\nCONTROLLED_BASELINE_MODE=%s\n" "$(umask)" "$before"
+  source /etc/profile.d/securelab-umask.sh
+  touch "$sandbox/after"
+  after=$(stat -c %a "$sandbox/after")
+  printf "PROJECT_UMASK=%s\nSECURED_FILE_MODE=%s\n" "$(umask)" "$after"
+  test "$before" = 644
+  test "$after" = 600
+  test "$(umask)" = 0077
+' | tee "$out/umask-verification.txt"
 # Patch state is measured, not inferred from apt update alone.
 sudo apt-get update
 sudo env DEBIAN_FRONTEND=noninteractive apt-get upgrade --with-new-pkgs -y

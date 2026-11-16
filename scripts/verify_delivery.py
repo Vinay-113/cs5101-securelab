@@ -23,8 +23,11 @@ for path,digest in m['source_sha256'].items():
     assert hashlib.sha256((ROOT/path).read_bytes()).hexdigest()==digest,('Source changed after recorded build',path)
 challenge=(run/m['missions']['22']['log']).read_text()
 for i in range(1,7):assert f'F{i} VERIFIED' in challenge
-for name in ['output/securelab-report.md','output/securelab-report.html','output/pdf/securelab-report.pdf']:
+for name in ['output/pdf/securelab-report.pdf']:
     assert (ROOT/name).stat().st_size>1000,name
+for removed in ['output/securelab-report.md','output/securelab-report.html']:
+    assert not (ROOT/removed).exists(),('Removed report export was recreated',removed)
+assert [r['mission'] for r in json.loads((ROOT/'docs/requirements-map.json').read_text())]==list(range(1,22))
 tests=(ROOT/'evidence/program-tests.log').read_text()
 assert re.search(r'Ran \d+ tests',tests) and '\nOK\n' in tests
 env=json.loads((ROOT/'evidence/environment.json').read_text())

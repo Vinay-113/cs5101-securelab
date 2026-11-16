@@ -36,7 +36,7 @@ The generated report links actual mission logs and reports their verification st
 
 **Q68-75.** Baseline first; identify six findings; classify each; choose and apply a control; re-test the same condition; preserve logs and checksums; summarize evidence and limitations in the final report.
 
-**Q76.** Reflection prompt: compare the observed ACL exception with the AppArmor denial even when DAC allowed access. Replace this draft with your own learning experience.
+**Q76.** The most striking result is the AppArmor probe: both teaching files opened under DAC, yet the same program was denied one file after its profile was enforced. Compared with the temporary ACL grant for Bob, this shows that owner-controlled permission and mandatory application policy answer different authorization questions. The allowed-file control still succeeded, demonstrating selective confinement rather than a general application failure.
 
 **Q77.** Protecting the incident record uses both directory traversal restrictions and file modes; integrity additionally needs a separately protected baseline. One control is insufficient.
 

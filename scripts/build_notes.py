@@ -203,7 +203,7 @@ add(22,'Practice: Secure the Machine','Can six scoped weaknesses be investigated
  'Require all six F1-F6 VERIFIED markers, baseline/after inventories and successful authorized access after remediation.',
  'This is a practice assessment of intentionally seeded fixtures. The real instructor challenge, separate rules and image were not supplied, so it cannot be claimed completed.',
  {'68-75':'Baseline first; identify six findings; classify each; choose and apply a control; re-test the same condition; preserve logs and checksums; summarize evidence and limitations in the final report.',
- '76':'Reflection prompt: compare the observed ACL exception with the AppArmor denial even when DAC allowed access. Replace this draft with your own learning experience.',
+ '76':'The most striking result is the AppArmor probe: both teaching files opened under DAC, yet the same program was denied one file after its profile was enforced. Compared with the temporary ACL grant for Bob, this shows that owner-controlled permission and mandatory application policy answer different authorization questions. The allowed-file control still succeeded, demonstrating selective confinement rather than a general application failure.',
  '77':'Protecting the incident record uses both directory traversal restrictions and file modes; integrity additionally needs a separately protected baseline. One control is insufficient.',
  '78':'The address-space maps and the stack-buffer-overflow diagnostic illustrate different boundaries: inter-process isolation versus memory safety inside one process.',
  '79':'Least privilege appears in group-based file access, named ACL grants, process capabilities, container restrictions, service identity and SSH authentication policy.',
